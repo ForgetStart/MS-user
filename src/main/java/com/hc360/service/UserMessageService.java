@@ -3,6 +3,7 @@ package com.hc360.service;
 import com.hc360.vo.CorTable;
 import com.hc360.vo.MainArea;
 import com.hc360.vo.OnCorTable;
+import com.hc360.vo.RecvnotesParam;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -91,4 +92,12 @@ public interface UserMessageService {
      * @throws Exception
      */
     boolean isBindMobile(Long providerId, Long isBind) throws Exception;
+
+    /**
+     * 取得最新留言数
+     * @param recvparam
+     * @return
+     * @throws Exception
+     */
+    int findLeaveWordCount(RecvnotesParam recvparam) throws Exception;
 }

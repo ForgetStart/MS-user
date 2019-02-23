@@ -3,10 +3,7 @@ package com.hc360.service.impl;
 import com.hc360.dao.UserInfoMapper;
 import com.hc360.mmt.db.dao.common.market.SearchScreenKeyword;
 import com.hc360.service.UserMessageService;
-import com.hc360.vo.CorBackListVo;
-import com.hc360.vo.MainArea;
-import com.hc360.vo.OnCorTable;
-import com.hc360.vo.CorTable;
+import com.hc360.vo.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -156,6 +153,17 @@ public class UserMessageServiceImpl implements UserMessageService {
         if(count > 0) return true;
 
         return false;
+    }
+
+    /**
+     * 取得最新留言数
+     * @param recvparam
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int findLeaveWordCount(RecvnotesParam recvparam) throws Exception {
+        return userInfoMapper.findLeaveWordCount(recvparam);
     }
 
 

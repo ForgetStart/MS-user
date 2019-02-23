@@ -1,10 +1,7 @@
 package com.hc360.dao;
 
 import com.hc360.dao.base.UserBaseMessageProvider;
-import com.hc360.vo.CorBackListVo;
-import com.hc360.vo.MainArea;
-import com.hc360.vo.OnCorTable;
-import com.hc360.vo.CorTable;
+import com.hc360.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -49,5 +46,8 @@ public interface UserInfoMapper {
 
     @Select("select  * from mobile_bind mb where mb.providerid = #{providerId} and mb.isbind = #{isBind}")
     int isBindMobile(@Param("providerId") Long providerId, @Param("isBind") Long isBind) throws Exception;
+
+    @SelectProvider(type = UserBaseMessageProvider.class, method = "findLeaveWordCount")
+    int findLeaveWordCount(RecvnotesParam recvparam) throws Exception;
 
 }
