@@ -1,10 +1,13 @@
 package com.hc360.service.impl;
 
 import com.hc360.dao.UserInfoMapper;
+import com.hc360.mmt.db.dao.common.market.SearchScreenKeyword;
 import com.hc360.service.UserMessageService;
 import com.hc360.vo.CorBackListVo;
+import com.hc360.vo.MainArea;
 import com.hc360.vo.OnCorTable;
 import com.hc360.vo.CorTable;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,8 +31,13 @@ public class UserMessageServiceImpl implements UserMessageService {
     }
 
     @Override
-    public CorTable findCorTableByProviderId(Long providerId) throws Exception {
-        return userInfoMapper.findCorTableByProviderId(providerId);
+    public OnCorTable findUserBaseByOnCorTable(OnCorTable onCorTable) throws Exception {
+        return userInfoMapper.findUserBaseByOnCorTable(onCorTable);
+    }
+
+    @Override
+    public CorTable findCorTableByProviderIdAndChecked(Long providerId) throws Exception {
+        return userInfoMapper.findCorTableByProviderIdAndChecked(providerId);
     }
 
     /**
@@ -83,6 +91,45 @@ public class UserMessageServiceImpl implements UserMessageService {
             }
         }
         return false;
+    }
+
+    /**
+     * 判断当前用户是否在白名单中
+     *      01--商机操作白名单标识
+     * @param providerId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public boolean isWhiteList(Long providerId) throws Exception {
+        List<Long> whiteList = userInfoMapper.findOperateWhiteListByProviderId(providerId);
+
+        if(whiteList != null && whiteList.size() > 0){
+            if(whiteList.contains(01)) return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * 获取用户屏蔽词白名单
+     * @param providerId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<String> getAllowScreenKeyword(Long providerId) throws Exception {
+        return SearchScreenKeyword.getAllowScreenKeyword(providerId);
+    }
+
+    @Override
+    public List<MainArea> findMainArea() throws Exception {
+        return userInfoMapper.findMainArea();
+    }
+
+    @Override
+    public String findAreaNameByAreaCode(String areaCode) throws Exception {
+        return userInfoMapper.findAreaNameByAreaCode(areaCode);
     }
 
 

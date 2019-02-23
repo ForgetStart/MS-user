@@ -80,7 +80,35 @@
 	        		<groupId>hibernate</groupId>
 	        	</exclusion>
 	        </exclusions>
-		</dependency>   	
+		</dependency>
+		<dependency>
+			<groupId>mmt</groupId>
+			<artifactId>mmt</artifactId>
+			<version>4.4.20190102.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.hc360.mmtlogutils</groupId>
+					<artifactId>mmtlogutils</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>hc-log4j</artifactId>
+					<groupId>hclog4j</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.hc360.jms</groupId>
+					<artifactId>jms-client</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 	    <dependency>
 		  <groupId>com.hc360.redis</groupId>
 		  <artifactId>RedisClient</artifactId>
