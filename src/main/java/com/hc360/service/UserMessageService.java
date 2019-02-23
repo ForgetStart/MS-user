@@ -1,7 +1,11 @@
 package com.hc360.service;
 
 import com.hc360.vo.CorTable;
+import com.hc360.vo.MainArea;
 import com.hc360.vo.OnCorTable;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Auther: Administrator
@@ -12,7 +16,15 @@ public interface UserMessageService {
 
     OnCorTable findOnCorTableByProviderId(Long providerId) throws Exception;
 
-    CorTable findCorTableByProviderId(Long providerId) throws Exception;
+    /**
+     * 根据动态条件，查询用户基本信息
+     * @param onCorTable
+     * @return
+     * @throws Exception
+     */
+    OnCorTable findUserBaseByOnCorTable(OnCorTable onCorTable) throws Exception;
+
+    CorTable findCorTableByProviderIdAndChecked(Long providerId) throws Exception;
 
     /**
      * 查询用户是否在黑名单中(是否被冻结)
@@ -33,10 +45,41 @@ public interface UserMessageService {
     boolean isDistrictByProviderid(Long providerId) throws Exception;
 
     /**
-     * 判断向前用户是否是简单注册用户
+     * 判断当前用户是否是简单注册用户
      * @param userId
      * @return
      * @throws Exception
      */
     boolean isSimpleUserByUserId(Long userId, Long providerId) throws Exception;
+
+    /**
+     * 判断当前用户是否在白名单中
+     * @param providerId
+     * @return
+     * @throws Exception
+     */
+    boolean isWhiteList(Long providerId) throws Exception;
+
+    /**
+     * 获取用户屏蔽词白名单
+     * @param providerId
+     * @return
+     * @throws Exception
+     */
+    List<String> getAllowScreenKeyword(Long providerId) throws Exception;
+
+    /**
+     * 获取所有主营行业
+     * @return
+     * @throws Exception
+     */
+    List<MainArea> findMainArea() throws Exception;
+
+    /**
+     * 根据行业编号查询行业名称
+     * @param areaCode
+     * @return
+     * @throws Exception
+     */
+    String findAreaNameByAreaCode(String areaCode) throws Exception;
 }
