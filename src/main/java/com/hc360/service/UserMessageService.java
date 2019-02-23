@@ -82,4 +82,13 @@ public interface UserMessageService {
      * @throws Exception
      */
     String findAreaNameByAreaCode(String areaCode) throws Exception;
+
+    /**
+     * 判断当前用户是否绑定手机
+     * @param providerId
+     * @param isBind
+     * @return
+     * @throws Exception
+     */
+    boolean isBindMobile(Long providerId, Long isBind) throws Exception;
 }

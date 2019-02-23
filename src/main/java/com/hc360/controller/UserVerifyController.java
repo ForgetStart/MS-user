@@ -184,4 +184,24 @@ public class UserVerifyController {
             return BaseResult.isFail("判断当前用户是否在白名单中异常");
         }
     }
+
+    /**
+     * 判断当前用户是否绑定手机
+     * @param pid
+     * @return
+     */
+    @RequestMapping("/bind/mobile/{providerid}")
+    @ResponseBody
+    public BaseResult isBindMobile(@PathVariable("providerid") Long pid){
+
+        if (pid == null) return BaseResult.illegalParam("providerid 不能为空");
+
+        try {
+            boolean isBind = userMessageService.isBindMobile(pid, 1L);
+            return BaseResult.isSuccess(isBind);
+        }catch (Exception e){
+            e.printStackTrace();
+            return BaseResult.isFail("判断当前用户是否绑定手机异常");
+        }
+    }
 }

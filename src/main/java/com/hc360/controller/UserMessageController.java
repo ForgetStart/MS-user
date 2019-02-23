@@ -110,7 +110,7 @@ public class UserMessageController {
 
         try {
             String areaName = userMessageService.findAreaNameByAreaCode(areacode);
-            return BaseResult.isSuccess(areacode);
+            return BaseResult.isSuccess(areaName);
         }catch (Exception e){
             e.printStackTrace();
             return BaseResult.isFail("根据行业编号查询行业名称异常");

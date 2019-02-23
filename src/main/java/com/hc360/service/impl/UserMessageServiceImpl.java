@@ -122,14 +122,40 @@ public class UserMessageServiceImpl implements UserMessageService {
         return SearchScreenKeyword.getAllowScreenKeyword(providerId);
     }
 
+    /**
+     * 获取所有主营行业
+     * @return
+     * @throws Exception
+     */
     @Override
     public List<MainArea> findMainArea() throws Exception {
         return userInfoMapper.findMainArea();
     }
 
+    /**
+     * 根据行业编号查询行业名称
+     * @param areaCode
+     * @return
+     * @throws Exception
+     */
     @Override
     public String findAreaNameByAreaCode(String areaCode) throws Exception {
         return userInfoMapper.findAreaNameByAreaCode(areaCode);
+    }
+
+    /**
+     * 判断当前用户是否绑定手机
+     * @param providerId
+     * @param isBind
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public boolean isBindMobile(Long providerId, Long isBind) throws Exception {
+        int count = userInfoMapper.isBindMobile(providerId, isBind);
+        if(count > 0) return true;
+
+        return false;
     }
 
 
