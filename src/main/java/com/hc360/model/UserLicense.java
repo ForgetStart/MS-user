@@ -4,194 +4,194 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- *³Ö¾ÃÀàUserLicense
+ *æŒä¹…ç±»UserLicense
  *@author Created By b2btool 
  */
 public class UserLicense implements Serializable {
 
-	/**Ö÷¼üID*/
+	/**ä¸»é”®ID*/
 	    private long id;
-    	/**·ÖÀàID*/
+    	/**åˆ†ç±»ID*/
 	    private String licatid;
-    	/**ÉÌ»§ID*/
+    	/**å•†æˆ·ID*/
 	    private long providerid;
-    	/**ÊÚÈ¨×´Ì¬(0±íÊ¾´ıÊÚÈ¨£¬1±íÊ¾ÒÑÊÚÈ¨£¬2±íÊ¾¾Ü¾øÊÚÈ¨)*/
+    	/**æˆæƒçŠ¶æ€(0è¡¨ç¤ºå¾…æˆæƒï¼Œ1è¡¨ç¤ºå·²æˆæƒï¼Œ2è¡¨ç¤ºæ‹’ç»æˆæƒ)*/
 	    private String checked;
-    	/**¾ÜÉóÀíÓÉ*/
+    	/**æ‹’å®¡ç†ç”±*/
 	    private String refreason;
-    	/**·¢²¼Ê±¼ä*/
+    	/**å‘å¸ƒæ—¶é—´*/
 	    private Timestamp pubdate;
-    	/**ĞŞ¸ÄÊ±¼ä*/
+    	/**ä¿®æ”¹æ—¶é—´*/
 	    private Timestamp modifydate;
-    	/**ÊÚÈ¨Ê±¼ä*/
+    	/**æˆæƒæ—¶é—´*/
 	    private Timestamp checkdate;
-    	/**¾ÜÉóÊ±¼ä*/
+    	/**æ‹’å®¡æ—¶é—´*/
 	    private Timestamp refcheckdate;
-    	/**²Ù×÷ÈË*/
+    	/**æ“ä½œäºº*/
 	    private String operator;
-    	/**×´Ì¬£¨0±íÊ¾¿ÉÓÃ£¬1±íÊ¾ÒÑÉ¾³ı£©*/
+    	/**çŠ¶æ€ï¼ˆ0è¡¨ç¤ºå¯ç”¨ï¼Œ1è¡¨ç¤ºå·²åˆ é™¤ï¼‰*/
 	    private String status;
     
    /**
-    * È¡µÃid
+    * å–å¾—id
     * @return id
     */
    public long getId () {
        return id;
    }
    /**
-    * ÉèÖÃid
-    * @param id ´ıÉèÖÃid
+    * è®¾ç½®id
+    * @param id å¾…è®¾ç½®id
     */
    public void setId(long id) {
        this.id = id;
    }
    
    /**
-    * È¡µÃlicatid
+    * å–å¾—licatid
     * @return licatid
     */
    public String getLicatid () {
        return licatid;
    }
    /**
-    * ÉèÖÃlicatid
-    * @param licatid ´ıÉèÖÃlicatid
+    * è®¾ç½®licatid
+    * @param licatid å¾…è®¾ç½®licatid
     */
    public void setLicatid(String licatid) {
        this.licatid = licatid;
    }
    
    /**
-    * È¡µÃproviderid
+    * å–å¾—providerid
     * @return providerid
     */
    public long getProviderid () {
        return providerid;
    }
    /**
-    * ÉèÖÃproviderid
-    * @param providerid ´ıÉèÖÃproviderid
+    * è®¾ç½®providerid
+    * @param providerid å¾…è®¾ç½®providerid
     */
    public void setProviderid(long providerid) {
        this.providerid = providerid;
    }
    
    /**
-    * È¡µÃchecked
+    * å–å¾—checked
     * @return checked
     */
    public String getChecked () {
        return checked;
    }
    /**
-    * ÉèÖÃchecked
-    * @param checked ´ıÉèÖÃchecked
+    * è®¾ç½®checked
+    * @param checked å¾…è®¾ç½®checked
     */
    public void setChecked(String checked) {
        this.checked = checked;
    }
    
    /**
-    * È¡µÃrefreason
+    * å–å¾—refreason
     * @return refreason
     */
    public String getRefreason () {
        return refreason;
    }
    /**
-    * ÉèÖÃrefreason
-    * @param refreason ´ıÉèÖÃrefreason
+    * è®¾ç½®refreason
+    * @param refreason å¾…è®¾ç½®refreason
     */
    public void setRefreason(String refreason) {
        this.refreason = refreason;
    }
    
    /**
-    * È¡µÃpubdate
+    * å–å¾—pubdate
     * @return pubdate
     */
    public Timestamp getPubdate () {
        return pubdate;
    }
    /**
-    * ÉèÖÃpubdate
-    * @param pubdate ´ıÉèÖÃpubdate
+    * è®¾ç½®pubdate
+    * @param pubdate å¾…è®¾ç½®pubdate
     */
    public void setPubdate(Timestamp pubdate) {
        this.pubdate = pubdate;
    }
    
    /**
-    * È¡µÃmodifydate
+    * å–å¾—modifydate
     * @return modifydate
     */
    public Timestamp getModifydate () {
        return modifydate;
    }
    /**
-    * ÉèÖÃmodifydate
-    * @param modifydate ´ıÉèÖÃmodifydate
+    * è®¾ç½®modifydate
+    * @param modifydate å¾…è®¾ç½®modifydate
     */
    public void setModifydate(Timestamp modifydate) {
        this.modifydate = modifydate;
    }
    
    /**
-    * È¡µÃcheckdate
+    * å–å¾—checkdate
     * @return checkdate
     */
    public Timestamp getCheckdate () {
        return checkdate;
    }
    /**
-    * ÉèÖÃcheckdate
-    * @param checkdate ´ıÉèÖÃcheckdate
+    * è®¾ç½®checkdate
+    * @param checkdate å¾…è®¾ç½®checkdate
     */
    public void setCheckdate(Timestamp checkdate) {
        this.checkdate = checkdate;
    }
    
    /**
-    * È¡µÃrefcheckdate
+    * å–å¾—refcheckdate
     * @return refcheckdate
     */
    public Timestamp getRefcheckdate () {
        return refcheckdate;
    }
    /**
-    * ÉèÖÃrefcheckdate
-    * @param refcheckdate ´ıÉèÖÃrefcheckdate
+    * è®¾ç½®refcheckdate
+    * @param refcheckdate å¾…è®¾ç½®refcheckdate
     */
    public void setRefcheckdate(Timestamp refcheckdate) {
        this.refcheckdate = refcheckdate;
    }
    
    /**
-    * È¡µÃoperator
+    * å–å¾—operator
     * @return operator
     */
    public String getOperator () {
        return operator;
    }
    /**
-    * ÉèÖÃoperator
-    * @param operator ´ıÉèÖÃoperator
+    * è®¾ç½®operator
+    * @param operator å¾…è®¾ç½®operator
     */
    public void setOperator(String operator) {
        this.operator = operator;
    }
    
    /**
-    * È¡µÃstatus
+    * å–å¾—status
     * @return status
     */
    public String getStatus () {
        return status;
    }
    /**
-    * ÉèÖÃstatus
-    * @param status ´ıÉèÖÃstatus
+    * è®¾ç½®status
+    * @param status å¾…è®¾ç½®status
     */
    public void setStatus(String status) {
        this.status = status;

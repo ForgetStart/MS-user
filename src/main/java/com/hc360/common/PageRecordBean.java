@@ -15,21 +15,21 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * JDBC·½Ê½²éÑ¯½á¹ûÃ¿¼ÇÂ¼¶ÔÏó
+ * JDBCæ–¹å¼æŸ¥è¯¢ç»“æœæ¯è®°å½•å¯¹è±¡
  * @author zhaosy
  * @version 4.0 2007-4-12
  * @since 4.0
  */
 public class PageRecordBean {
-	/** Ã¿¼ÇÂ¼´æ´¢½á¹ûÓ³Éä */
+	/** æ¯è®°å½•å­˜å‚¨ç»“æœæ˜ å°„ */
 	private final Map<String, Object> columnMap = new HashMap<String, Object>();
-	/** Ã¿¼ÇÂ¼´æ´¢½á¹ûÁĞ±í */
+	/** æ¯è®°å½•å­˜å‚¨ç»“æœåˆ—è¡¨ */
 	private final List<Object> lstColumn = new ArrayList<Object>();
 	
 	/**
-	 * ¸ù¾İ¼ÇÂ¼¼¯µ±Ç°Ö¸Ïò¶ÔÏó¹¹Ôì¼ÇÂ¼ÄÚÈİ
-	 * @param rs ²éÑ¯¼ÇÂ¼¼¯
-	 * @throws MmtException ¼ÇÂ¼¼¯²Ù×÷·¢ÉúÒì³£
+	 * æ ¹æ®è®°å½•é›†å½“å‰æŒ‡å‘å¯¹è±¡æ„é€ è®°å½•å†…å®¹
+	 * @param rs æŸ¥è¯¢è®°å½•é›†
+	 * @throws MmtException è®°å½•é›†æ“ä½œå‘ç”Ÿå¼‚å¸¸
 	 */
 	public PageRecordBean(ResultSet rs) throws MmtException {
 		if (rs == null) return;
@@ -37,9 +37,9 @@ public class PageRecordBean {
 	}
 	
 	/**
-	 * ¹¹Ôìº¯Êıµ÷ÓÃ£¬±£´æ¼ÇÂ¼¼¯µ±Ç°Ö¸Ïò¼ÇÂ¼ĞÅÏ¢
-	 * @param rs ¼ÇÂ¼¼¯
-	 * @throws MmtException ±£´æ¼ÇÂ¼ĞÅÏ¢Ê±·¢ÉúÒì³£
+	 * æ„é€ å‡½æ•°è°ƒç”¨ï¼Œä¿å­˜è®°å½•é›†å½“å‰æŒ‡å‘è®°å½•ä¿¡æ¯
+	 * @param rs è®°å½•é›†
+	 * @throws MmtException ä¿å­˜è®°å½•ä¿¡æ¯æ—¶å‘ç”Ÿå¼‚å¸¸
 	 */
 	private final void setResultColumnInfo(ResultSet rs) throws MmtException {
 		try {
@@ -52,22 +52,22 @@ public class PageRecordBean {
 				lstColumn.add(value);
 			}
 		} catch (SQLException e) {
-			throw new MmtException("¼ÇÂ¼¼¯²Ù×÷·¢ÉúÒì³£", e);
+			throw new MmtException("è®°å½•é›†æ“ä½œå‘ç”Ÿå¼‚å¸¸", e);
 		}
 	}
 	
 	/**
-	 * ¸ù¾İ·µ»Ø½á¹û¼ÇÂ¼¼¯ÖĞÁĞÃûÈ¡µÃ¶ÔÓ¦¼ÇÂ¼ĞÅÏ¢
-	 * @param columnName ÁĞÃû£¬Oracle¶ÔÓ¦ÁĞÃû£¬²»ÄÜÊ¹ÓÃHibernate³Ö¾ÃÀàÖĞÁĞÃû
-	 * @return Ö¸¶¨ÁĞĞÅÏ¢
+	 * æ ¹æ®è¿”å›ç»“æœè®°å½•é›†ä¸­åˆ—åå–å¾—å¯¹åº”è®°å½•ä¿¡æ¯
+	 * @param columnName åˆ—åï¼ŒOracleå¯¹åº”åˆ—åï¼Œä¸èƒ½ä½¿ç”¨HibernateæŒä¹…ç±»ä¸­åˆ—å
+	 * @return æŒ‡å®šåˆ—ä¿¡æ¯
 	 */
 	public Object getValue(String columnName) {
 		return columnMap.get(columnName.toLowerCase());
 	}
 	/**
-	 * ¸ù¾İ·µ»Ø½á¹û¼ÇÂ¼¼¯ÖĞÁĞÃûÈ¡µÃ¶ÔÓ¦¼ÇÂ¼×Ö·û´®ĞÅÏ¢
-	 * @param columnName ÁĞÃû£¬Oracle¶ÔÓ¦ÁĞÃû£¬²»ÄÜÊ¹ÓÃHibernate³Ö¾ÃÀàÖĞÁĞÃû
-	 * @return Ö¸¶¨ÁĞ×Ö·û´®ĞÅÏ¢
+	 * æ ¹æ®è¿”å›ç»“æœè®°å½•é›†ä¸­åˆ—åå–å¾—å¯¹åº”è®°å½•å­—ç¬¦ä¸²ä¿¡æ¯
+	 * @param columnName åˆ—åï¼ŒOracleå¯¹åº”åˆ—åï¼Œä¸èƒ½ä½¿ç”¨HibernateæŒä¹…ç±»ä¸­åˆ—å
+	 * @return æŒ‡å®šåˆ—å­—ç¬¦ä¸²ä¿¡æ¯
 	 */
 	public String getString(String columnName) {
 		return Convert.getString(columnMap.get(columnName.toLowerCase()));
@@ -75,9 +75,9 @@ public class PageRecordBean {
 	
 	
 	/**
-	 * ¸ù¾İ·µ»Ø½á¹û¼ÇÂ¼¼¯ÖĞÁĞÃûÈ¡µÃ¶ÔÓ¦¼ÇÂ¼Ê±¼äĞÅÏ¢
-	 * @param columnName ÁĞÃû£¬Oracle¶ÔÓ¦ÁĞÃû£¬²»ÄÜÊ¹ÓÃHibernate³Ö¾ÃÀàÖĞÁĞÃû
-	 * @return Ö¸¶¨ÁĞÊ±¼äĞÅÏ¢
+	 * æ ¹æ®è¿”å›ç»“æœè®°å½•é›†ä¸­åˆ—åå–å¾—å¯¹åº”è®°å½•æ—¶é—´ä¿¡æ¯
+	 * @param columnName åˆ—åï¼ŒOracleå¯¹åº”åˆ—åï¼Œä¸èƒ½ä½¿ç”¨HibernateæŒä¹…ç±»ä¸­åˆ—å
+	 * @return æŒ‡å®šåˆ—æ—¶é—´ä¿¡æ¯
 	 * @throws MmtException 
 	 */
 	public Timestamp getTimestamp(String columnName) throws MmtException {
@@ -87,10 +87,10 @@ public class PageRecordBean {
 	}
 	
 	/**
-	 * ·µ»Ø½á¹ûÖĞÊ±¼äĞÅÏ¢ÀàĞÍ
+	 * è¿”å›ç»“æœä¸­æ—¶é—´ä¿¡æ¯ç±»å‹
 	 * @author chenxinwei
 	 * @version 1.0
-	 * @date 2014Äê5ÔÂ14ÈÕ ÏÂÎç5:58:58
+	 * @date 2014å¹´5æœˆ14æ—¥ ä¸‹åˆ5:58:58
 	 * @param object
 	 * @return 
 	 * Timestamp
@@ -107,15 +107,15 @@ public class PageRecordBean {
 				return (Timestamp)object;
 				
 			} else {
-				throw new MmtException("·µ»Ø½á¹û¼ÇÂ¼¼¯ÖĞ£¬»ñÈ¡Ê±¼äÊı¾İÀàĞÍ´íÎó£¡" + object.getClass().getName());
+				throw new MmtException("è¿”å›ç»“æœè®°å½•é›†ä¸­ï¼Œè·å–æ—¶é—´æ•°æ®ç±»å‹é”™è¯¯ï¼" + object.getClass().getName());
 			}
 		}
 		return null;
 	}
 	/**
-	 * ¸ù¾İ·µ»Ø½á¹û¼ÇÂ¼¼¯ÖĞÁĞÃûÈ¡µÃ¶ÔÓ¦¼ÇÂ¼³¤ÕûĞÎĞÅÏ¢
-	 * @param columnName ÁĞÃû£¬Oracle¶ÔÓ¦ÁĞÃû£¬²»ÄÜÊ¹ÓÃHibernate³Ö¾ÃÀàÖĞÁĞÃû
-	 * @return Ö¸¶¨ÁĞÊ±¼äĞÅÏ¢
+	 * æ ¹æ®è¿”å›ç»“æœè®°å½•é›†ä¸­åˆ—åå–å¾—å¯¹åº”è®°å½•é•¿æ•´å½¢ä¿¡æ¯
+	 * @param columnName åˆ—åï¼ŒOracleå¯¹åº”åˆ—åï¼Œä¸èƒ½ä½¿ç”¨HibernateæŒä¹…ç±»ä¸­åˆ—å
+	 * @return æŒ‡å®šåˆ—æ—¶é—´ä¿¡æ¯
 	 * @throws MmtException 
 	 */
 	public long getLong(String columnName) throws MmtException {
@@ -124,10 +124,10 @@ public class PageRecordBean {
 		
 	}
 	/**
-	 * ·µ»Ø½á¹ûÖĞ³¤ÕûĞÎĞÅÏ¢ÀàĞÍ
+	 * è¿”å›ç»“æœä¸­é•¿æ•´å½¢ä¿¡æ¯ç±»å‹
 	 * @author chenxinwei
 	 * @version 1.0
-	 * @date 2014Äê5ÔÂ20ÈÕ ÏÂÎç5:51:19
+	 * @date 2014å¹´5æœˆ20æ—¥ ä¸‹åˆ5:51:19
 	 * @param object
 	 * @return 
 	 * long
@@ -139,10 +139,10 @@ public class PageRecordBean {
 	}
 	
 	/**
-	 * ·µ»Ø½á¹û¼ÇÂ¼¼¯ÖĞ£¬»ñÈ¡³¤ÕûĞÎĞÅÏ¢ÀàĞÍ
+	 * è¿”å›ç»“æœè®°å½•é›†ä¸­ï¼Œè·å–é•¿æ•´å½¢ä¿¡æ¯ç±»å‹
 	 * @author chenxinwei
 	 * @version 1.0
-	 * @date 2014Äê5ÔÂ20ÈÕ ÏÂÎç5:51:19
+	 * @date 2014å¹´5æœˆ20æ—¥ ä¸‹åˆ5:51:19
 	 * @param object
 	 * @return 
 	 * long
@@ -162,16 +162,16 @@ public class PageRecordBean {
 				return (Integer)object;
 				
 			} else {
-				throw new MmtException("·µ»Ø½á¹û¼ÇÂ¼¼¯ÖĞ£¬»ñÈ¡³¤ÕûĞÎÊı¾İÀàĞÍ´íÎó£¡" + object.getClass().getName());
+				throw new MmtException("è¿”å›ç»“æœè®°å½•é›†ä¸­ï¼Œè·å–é•¿æ•´å½¢æ•°æ®ç±»å‹é”™è¯¯ï¼" + object.getClass().getName());
 			}
 		}
 		return 0;
 	}
 
 	/**
-	 * ¸ù¾İ·µ»Ø½á¹û¼ÇÂ¼¼¯ÖĞÁĞÃûÈ¡µÃ¶ÔÓ¦¼ÇÂ¼Ê±¼äĞÅÏ¢
-	 * @param columnName ÁĞÃû£¬Oracle¶ÔÓ¦ÁĞÃû£¬²»ÄÜÊ¹ÓÃHibernate³Ö¾ÃÀàÖĞÁĞÃû
-	 * @return Ö¸¶¨ÁĞÊ±¼äĞÅÏ¢
+	 * æ ¹æ®è¿”å›ç»“æœè®°å½•é›†ä¸­åˆ—åå–å¾—å¯¹åº”è®°å½•æ—¶é—´ä¿¡æ¯
+	 * @param columnName åˆ—åï¼ŒOracleå¯¹åº”åˆ—åï¼Œä¸èƒ½ä½¿ç”¨HibernateæŒä¹…ç±»ä¸­åˆ—å
+	 * @return æŒ‡å®šåˆ—æ—¶é—´ä¿¡æ¯
 	 * @throws MmtException 
 	 */
 	public Timestamp getTimestamp(int idx) throws MmtException {
@@ -180,17 +180,17 @@ public class PageRecordBean {
 		
 	}
 	/**
-	 * ¸ù¾İÁĞ±àºÅÈ¡µÃ¼ÇÂ¼ĞÅÏ¢
-	 * @param idx ÁĞ±àºÅ£¬´ÓÁã¿ªÊ¼
-	 * @return ¼ÇÂ¼ĞÅÏ¢
+	 * æ ¹æ®åˆ—ç¼–å·å–å¾—è®°å½•ä¿¡æ¯
+	 * @param idx åˆ—ç¼–å·ï¼Œä»é›¶å¼€å§‹
+	 * @return è®°å½•ä¿¡æ¯
 	 */
 	public Object getValue(int idx) {
 		return lstColumn.get(idx);
 	}
 	/**
-	 * ¸ù¾İÁĞ±àºÅÈ¡µÃ¼ÇÂ¼×Ö·û´®ĞÅÏ¢
-	 * @param idx ÁĞ±àºÅ£¬´ÓÁã¿ªÊ¼
-	 * @return ¼ÇÂ¼×Ö·û´®ĞÅÏ¢
+	 * æ ¹æ®åˆ—ç¼–å·å–å¾—è®°å½•å­—ç¬¦ä¸²ä¿¡æ¯
+	 * @param idx åˆ—ç¼–å·ï¼Œä»é›¶å¼€å§‹
+	 * @return è®°å½•å­—ç¬¦ä¸²ä¿¡æ¯
 	 */
 	public String getString(int idx) {
 		return Convert.getString(lstColumn.get(idx));

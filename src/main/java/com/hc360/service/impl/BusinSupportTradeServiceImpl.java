@@ -9,8 +9,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 是否支持在线交易
- * @author hc360
+ * 鏄惁鏀寔鍦ㄧ嚎浜ゆ槗
+ * @author hk
  *
  */
 @Service

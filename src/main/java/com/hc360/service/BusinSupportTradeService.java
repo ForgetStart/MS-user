@@ -7,14 +7,14 @@ import java.util.List;
 
 
 /**
- * ÊÇ·ñÖ§³ÖÔÚÏß½»Ò×
- * @author hc360
+ * æ˜¯å¦æ”¯æŒåœ¨çº¿äº¤æ˜“
+ * @author hk
  *
  */
 public interface BusinSupportTradeService {
 
 	/**
-	 * »ñÈ¡ËùÓĞĞèÒªÖ¤Êé·ÖÀà
+	 * è·å–æ‰€æœ‰éœ€è¦è¯ä¹¦åˆ†ç±»
 	 * @author hk
 	 * @date 2019-02-22
 	 * @return
@@ -23,7 +23,7 @@ public interface BusinSupportTradeService {
 	List<LicenseCategory> getLicenseCategoryAll()throws Exception;
 
 	/**
-	 * Í¨¹ıÖ¤Êé·ÖÀà»ñÈ¡ÉÌ»úµÄ·ÖÀà
+	 * é€šè¿‡è¯ä¹¦åˆ†ç±»è·å–å•†æœºçš„åˆ†ç±»
 	 * @author hk
 	 * @date 2019-02-22
 	 * @return
@@ -33,7 +33,7 @@ public interface BusinSupportTradeService {
 
 
 	/**
-	 * Í¨¹ı·ÖÀà»ñÈ¡Ö¤ÊéĞÅÏ¢
+	 * é€šè¿‡åˆ†ç±»è·å–è¯ä¹¦ä¿¡æ¯
 	 * @author hk
 	 * @date 2019-02-22
 	 * @return
@@ -41,7 +41,7 @@ public interface BusinSupportTradeService {
 	 */
 	public List<LicenseCategoryItems> getLicenseCategoryItemsBySupcatid(String supcatid)throws Exception;
 	/**
-	 * »ñÈ¡ËùÓĞÓÃ»§ÒÑÊÚÈ¨·ÖÀà
+	 * è·å–æ‰€æœ‰ç”¨æˆ·å·²æˆæƒåˆ†ç±»
 	 * @author hk
 	 * @date 2019-02-22
 	 * @return
@@ -50,7 +50,7 @@ public interface BusinSupportTradeService {
 	List<UserLicense> getUserLicenseAll()throws Exception;
 
 	/**
-	 * »ñÈ¡Ö¸¶¨ÓÃ»§ÒÑÊÚÈ¨·ÖÀà
+	 * è·å–æŒ‡å®šç”¨æˆ·å·²æˆæƒåˆ†ç±»
 	 * @author hk
 	 * @date 2019-02-22
 	 * @return
@@ -59,7 +59,7 @@ public interface BusinSupportTradeService {
 	List<UserLicense> getUserLicenseAllByProviderid(long providerid)throws Exception;
 
 	/**
-	 * »ñÈ¡ÓÃ»§ÊÚÈ¨Ã÷Ï¸
+	 * è·å–ç”¨æˆ·æˆæƒæ˜ç»†
 	 * @author hk
 	 * @date 2019-02-22
 	 * @return
@@ -67,7 +67,7 @@ public interface BusinSupportTradeService {
 	 */
 	List<UserLicenseItems> getUserLicenseItems(long userliid)throws Exception;
 	/**
-	 * »ñÈ¡Ö¸¶¨ÓÃ»§ÊÚÈ¨·ÖÀà×´Ì¬
+	 * è·å–æŒ‡å®šç”¨æˆ·æˆæƒåˆ†ç±»çŠ¶æ€
 	 * @author hk
 	 * @date 2019-02-22
 	 * @return

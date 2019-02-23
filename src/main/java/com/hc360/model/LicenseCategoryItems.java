@@ -4,109 +4,109 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- *³Ö¾ÃÀàLicenseCategoryItems
+ *æŒä¹…ç±»LicenseCategoryItems
  *@author Created By b2btool 
  */
 public class LicenseCategoryItems implements Serializable {
 
-	/**Ö÷¼üID*/
+	/**ä¸»é”®ID*/
 	    private long id;
-    	/**·ÖÀàµÄID*/
+    	/**åˆ†ç±»çš„ID*/
 	    private String licatid;
-    	/**ÖÕ¼«·ÖÀàID*/
+    	/**ç»ˆæåˆ†ç±»ID*/
 	    private String supcatid;
-    	/**·¢²¼Ê±¼ä*/
+    	/**å‘å¸ƒæ—¶é—´*/
 	    private Timestamp pubdate;
-    	/**²Ù×÷ÈË*/
+    	/**æ“ä½œäºº*/
 	    private String operator;
-    	/**(±£Áô×Ö¶Î)*/
+    	/**(ä¿ç•™å­—æ®µ)*/
 	    private String status;
     
    /**
-    * È¡µÃid
+    * å–å¾—id
     * @return id
     */
    public long getId () {
        return id;
    }
    /**
-    * ÉèÖÃid
-    * @param id ´ıÉèÖÃid
+    * è®¾ç½®id
+    * @param id å¾…è®¾ç½®id
     */
    public void setId(long id) {
        this.id = id;
    }
    
    /**
-    * È¡µÃlicatid
+    * å–å¾—licatid
     * @return licatid
     */
    public String getLicatid () {
        return licatid;
    }
    /**
-    * ÉèÖÃlicatid
-    * @param licatid ´ıÉèÖÃlicatid
+    * è®¾ç½®licatid
+    * @param licatid å¾…è®¾ç½®licatid
     */
    public void setLicatid(String licatid) {
        this.licatid = licatid;
    }
    
    /**
-    * È¡µÃsupcatid
+    * å–å¾—supcatid
     * @return supcatid
     */
    public String getSupcatid () {
        return supcatid;
    }
    /**
-    * ÉèÖÃsupcatid
-    * @param supcatid ´ıÉèÖÃsupcatid
+    * è®¾ç½®supcatid
+    * @param supcatid å¾…è®¾ç½®supcatid
     */
    public void setSupcatid(String supcatid) {
        this.supcatid = supcatid;
    }
    
    /**
-    * È¡µÃpubdate
+    * å–å¾—pubdate
     * @return pubdate
     */
    public Timestamp getPubdate () {
        return pubdate;
    }
    /**
-    * ÉèÖÃpubdate
-    * @param pubdate ´ıÉèÖÃpubdate
+    * è®¾ç½®pubdate
+    * @param pubdate å¾…è®¾ç½®pubdate
     */
    public void setPubdate(Timestamp pubdate) {
        this.pubdate = pubdate;
    }
    
    /**
-    * È¡µÃoperator
+    * å–å¾—operator
     * @return operator
     */
    public String getOperator () {
        return operator;
    }
    /**
-    * ÉèÖÃoperator
-    * @param operator ´ıÉèÖÃoperator
+    * è®¾ç½®operator
+    * @param operator å¾…è®¾ç½®operator
     */
    public void setOperator(String operator) {
        this.operator = operator;
    }
    
    /**
-    * È¡µÃstatus
+    * å–å¾—status
     * @return status
     */
    public String getStatus () {
        return status;
    }
    /**
-    * ÉèÖÃstatus
-    * @param status ´ıÉèÖÃstatus
+    * è®¾ç½®status
+    * @param status å¾…è®¾ç½®status
     */
    public void setStatus(String status) {
        this.status = status;

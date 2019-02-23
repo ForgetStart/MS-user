@@ -1,5 +1,5 @@
 /**
- * ResponseUtil.java 2012-7-19 ÉÏÎç11:28:49 author:liusz
+ * ResponseUtil.java 2012-7-19 ä¸Šåˆ11:28:49 author:liusz
  *
  * Copyright(c) 2000-2012 HC360.COM, All Rights Reserved.
  */
@@ -9,50 +9,50 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Response°ï×éÀà
+ * Responseå¸®ç»„ç±»
  * @author hk
- * @date 2012-7-19 ÉÏÎç11:28:49
+ * @date 2012-7-19 ä¸Šåˆ11:28:49
  * @version 1.0
  * @since 1.0
  * */
 public class ResponseUtil {
 	/**
-	 * ·¢ËÍÎÄ±¾¡£Ê¹ÓÃGBK±àÂë¡£
+	 * å‘é€æ–‡æœ¬ã€‚ä½¿ç”¨GBKç¼–ç ã€‚
 	 * @param response	HttpServletResponse
-	 * @param text		·¢ËÍµÄ×Ö·û´®
+	 * @param text		å‘é€çš„å­—ç¬¦ä¸²
 	 */
 	public static void renderText(HttpServletResponse response, String text) {
 		render(response, "text/plain;charset=GBK", text);
 	}
 
 	/**
-	 * ·¢ËÍjson¡£Ê¹ÓÃGBK±àÂë¡£
+	 * å‘é€jsonã€‚ä½¿ç”¨GBKç¼–ç ã€‚
 	 * @param response	HttpServletResponse
-	 * @param text		 ·¢ËÍµÄ×Ö·û´®
+	 * @param text		 å‘é€çš„å­—ç¬¦ä¸²
 	 */
 	public static void renderJsonByGBK(HttpServletResponse response, String text) {
 		render(response, "application/json;charset=GBK", text);
 	}
 	/**
-	 * ·¢ËÍjson¡£Ê¹ÓÃUTF-8±àÂë¡£
+	 * å‘é€jsonã€‚ä½¿ç”¨UTF-8ç¼–ç ã€‚
 	 * @param response	HttpServletResponse
-	 * @param text		 ·¢ËÍµÄ×Ö·û´®
+	 * @param text		 å‘é€çš„å­—ç¬¦ä¸²
 	 */
 	public static void renderJsonByUTF8(HttpServletResponse response, String text) {
 		render(response, "application/json;charset=UTF-8", text);
 	}
 
 	/**
-	 * ·¢ËÍxml¡£Ê¹ÓÃGBK±àÂë¡£
+	 * å‘é€xmlã€‚ä½¿ç”¨GBKç¼–ç ã€‚
 	 * @param response	HttpServletResponse
-	 * @param text		 ·¢ËÍµÄ×Ö·û´®
+	 * @param text		 å‘é€çš„å­—ç¬¦ä¸²
 	 */
 	public static void renderXml(HttpServletResponse response, String text) {
 		render(response, "text/xml;charset=GBK", text);
 	}
 
 	/**
-	 * ·¢ËÍÄÚÈİ¡£Ê¹ÓÃUTF-8±àÂë¡£
+	 * å‘é€å†…å®¹ã€‚ä½¿ç”¨UTF-8ç¼–ç ã€‚
 	 * @param response
 	 * @param contentType
 	 * @param text

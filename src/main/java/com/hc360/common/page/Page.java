@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * ·ÖÒ³²éÑ¯½á¹ûBean
+ * åˆ†é¡µæŸ¥è¯¢ç»“æœBean
  * @author zhaosy
  * @version 4.0 2007-4-17
  * @since 4.0
@@ -19,20 +19,20 @@ public class Page implements Serializable{
 	/***/
 	private static final long serialVersionUID = 1L;
 	
-	/** ²éÑ¯½á¹û */
+	/** æŸ¥è¯¢ç»“æœ */
 	private List lstResult;
-	/** ·ÖÒ³ĞÅÏ¢Bean */
+	/** åˆ†é¡µä¿¡æ¯Bean */
 	private PageBean pageBean;
 	
 	/**
-	 * (¿Õ)
+	 * (ç©º)
 	 */
 	public Page() {}
 	
 	/**
-	 * ¸ù¾İ²éÑ¯½á¹û¡¢·ÖÒ³ĞÅÏ¢¹¹Ôì
-	 * @param lstResult ²éÑ¯½á¹û
-	 * @param pageBean ·ÖÒ³ĞÅÏ¢Bean
+	 * æ ¹æ®æŸ¥è¯¢ç»“æœã€åˆ†é¡µä¿¡æ¯æ„é€ 
+	 * @param lstResult æŸ¥è¯¢ç»“æœ
+	 * @param pageBean åˆ†é¡µä¿¡æ¯Bean
 	 */
 	public Page(List lstResult, PageBean pageBean) {
 		this.lstResult = lstResult;
@@ -40,30 +40,30 @@ public class Page implements Serializable{
 	}
 	
 	/**
-	 * È¡µÃ²éÑ¯½á¹û
-	 * @return ²éÑ¯½á¹û
+	 * å–å¾—æŸ¥è¯¢ç»“æœ
+	 * @return æŸ¥è¯¢ç»“æœ
 	 */
 	public List getLstResult() {
 		return lstResult;
 	}
 	/**
-	 * ÉèÖÃ²éÑ¯½á¹û
-	 * @param lstResult ²éÑ¯½á¹û
+	 * è®¾ç½®æŸ¥è¯¢ç»“æœ
+	 * @param lstResult æŸ¥è¯¢ç»“æœ
 	 */
 	public void setLstResult(List lstResult) {
 		this.lstResult = lstResult;
 	}
 	
 	/**
-	 * È¡µÃ·ÖÒ³ĞÅÏ¢Bean
-	 * @return ·ÖÒ³ĞÅÏ¢Bean
+	 * å–å¾—åˆ†é¡µä¿¡æ¯Bean
+	 * @return åˆ†é¡µä¿¡æ¯Bean
 	 */
 	public PageBean getPageBean() {
 		return pageBean;
 	}
 	/**
-	 * ÉèÖÃ·ÖÒ³ĞÅÏ¢Bean
-	 * @param pageBean ·ÖÒ³ĞÅÏ¢Bean
+	 * è®¾ç½®åˆ†é¡µä¿¡æ¯Bean
+	 * @param pageBean åˆ†é¡µä¿¡æ¯Bean
 	 */
 	public void setPageBean(PageBean pageBean) {
 		this.pageBean = pageBean;

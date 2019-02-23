@@ -6,31 +6,31 @@ import java.io.Serializable;
 import static java.lang.Math.min;
 
 /**
- * ·ÖÒ³²éÑ¯Bean
+ * åˆ†é¡µæŸ¥è¯¢Bean
  * @author zhsosy 2007-3-22
  * @version 1.0 JDK1.5.0_06
  */
 public class PageBean implements Serializable{
 
-	/** ·ÖÒ³²éÑ¯Ä¬ÈÏ·µ»Ø¼ÇÂ¼Êı */
+	/** åˆ†é¡µæŸ¥è¯¢é»˜è®¤è¿”å›è®°å½•æ•° */
 	public static final int DEF_PAGE_VIEW_SIZE = 20;
 	/***/
 	private static final long serialVersionUID = 1L;
-	/** µ±Ç°Ò³ */
+	/** å½“å‰é¡µ */
 	private int page;
-	/** µ±Ç°Ò³ÏÔÊ¾¼ÇÂ¼ÌõÊı */
+	/** å½“å‰é¡µæ˜¾ç¤ºè®°å½•æ¡æ•° */
 	private int pageSize;
-	/** È¡µÃ²éÑ¯×Ü¼ÇÂ¼Êı */
+	/** å–å¾—æŸ¥è¯¢æ€»è®°å½•æ•° */
 	private int count;
 	/** 
-	 * ¶¯×÷ÀàĞÍ
-	 * <li>0£ºÎŞ¶¯×÷</li> 
-	 * <li>1£ºÊ×Ò³</li> 
-	 * <li>2£ºÇ°Ò»Ò³</li> 
-	 * <li>3£ººóÒ»Ò³</li> 
-	 * <li>4£ºÄ©Ò³</li> 
-	 * <li>5£ºÌø×ªÒ³</li> 
-	 * <li>6£ºÖØĞÂÉè¶¨Ã¿Ò³¼ÇÂ¼Êı</li> 
+	 * åŠ¨ä½œç±»å‹
+	 * <li>0ï¼šæ— åŠ¨ä½œ</li> 
+	 * <li>1ï¼šé¦–é¡µ</li> 
+	 * <li>2ï¼šå‰ä¸€é¡µ</li> 
+	 * <li>3ï¼šåä¸€é¡µ</li> 
+	 * <li>4ï¼šæœ«é¡µ</li> 
+	 * <li>5ï¼šè·³è½¬é¡µ</li> 
+	 * <li>6ï¼šé‡æ–°è®¾å®šæ¯é¡µè®°å½•æ•°</li> 
 	 */
 	private int actionType;
 	
@@ -53,9 +53,9 @@ public class PageBean implements Serializable{
 	}
 	
 	/**
-	 * ¸ù¾İµ±Ç°ÏÔÊ¾Ò³ÓëÃ¿Ò³ÏÔÊ¾¼ÇÂ¼ÊıÉèÖÃ²éÑ¯ĞÅÏ¢³õÊ¼¶ÔÏó
-	 * @param page µ±Ç°ÏÔÊ¾Ò³ºÅ
-	 * @param pageSize µ±Ç°Ò³ÏÔÊ¾¼ÇÂ¼ÌõÊı
+	 * æ ¹æ®å½“å‰æ˜¾ç¤ºé¡µä¸æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°è®¾ç½®æŸ¥è¯¢ä¿¡æ¯åˆå§‹å¯¹è±¡
+	 * @param page å½“å‰æ˜¾ç¤ºé¡µå·
+	 * @param pageSize å½“å‰é¡µæ˜¾ç¤ºè®°å½•æ¡æ•°
 	 */
 	public PageBean(int page, int pageSize) {
 		this.page = (page <= 0) ? 1 : page;
@@ -63,15 +63,15 @@ public class PageBean implements Serializable{
 	}
 	
 	/**
-	 * È¡µÃ¶¯×÷ÀàĞÍ
-	 * @return ¶¯×÷ÀàĞÍ
+	 * å–å¾—åŠ¨ä½œç±»å‹
+	 * @return åŠ¨ä½œç±»å‹
 	 */
 	public int getActionType() {
 		return actionType;
 	}
 	/**
-	 * ÉèÖÃ¶¯×÷ÀàĞÍ
-	 * @param actionType ¶¯×÷ÀàĞÍ
+	 * è®¾ç½®åŠ¨ä½œç±»å‹
+	 * @param actionType åŠ¨ä½œç±»å‹
 	 */
 
 	public void setActionType(int actionType) {
@@ -79,45 +79,45 @@ public class PageBean implements Serializable{
 	}
 
 	/**
-	 * È¡µÃµ±Ç°ÏÔÊ¾Ò³ºÅ
-	 * @return µ±Ç°ÏÔÊ¾Ò³ºÅ
+	 * å–å¾—å½“å‰æ˜¾ç¤ºé¡µå·
+	 * @return å½“å‰æ˜¾ç¤ºé¡µå·
 	 */
 	public int getPage() {
 		return (page <= 0) ? 1 : page;
 	}
 	/**
-	 * ÉèÖÃµ±Ç°Ò³
-	 * @param page µ±Ç°Ò³
+	 * è®¾ç½®å½“å‰é¡µ
+	 * @param page å½“å‰é¡µ
 	 */
 	public void setPage(int page) {
 		this.page = page;
 	}
 	
 	/**
-	 * È¡µÃµ±Ç°ÏÔÊ¾Ò³ºÅ×î¶àÏÔÊ¾ÌõÊı
-	 * @return µ±Ç°ÏÔÊ¾Ò³ºÅ×î¶àÏÔÊ¾ÌõÊı
+	 * å–å¾—å½“å‰æ˜¾ç¤ºé¡µå·æœ€å¤šæ˜¾ç¤ºæ¡æ•°
+	 * @return å½“å‰æ˜¾ç¤ºé¡µå·æœ€å¤šæ˜¾ç¤ºæ¡æ•°
 	 */
 	public int getPageSize() {
 		return (pageSize <= 0) ? DEF_PAGE_VIEW_SIZE : pageSize;
 	}
 	/**
-	 * ÉèÖÃµ±Ç°Ò³ÏÔÊ¾¼ÇÂ¼ÌõÊı
-	 * @param pageSize µ±Ç°Ò³ÏÔÊ¾¼ÇÂ¼ÌõÊı
+	 * è®¾ç½®å½“å‰é¡µæ˜¾ç¤ºè®°å½•æ¡æ•°
+	 * @param pageSize å½“å‰é¡µæ˜¾ç¤ºè®°å½•æ¡æ•°
 	 */
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
 	
 	/**
-	 * È¡µÃ²éÑ¯È¡µÃ¼ÇÂ¼×ÜÊı
-	 * @return È¡µÃ²éÑ¯È¡µÃ¼ÇÂ¼×ÜÊı
+	 * å–å¾—æŸ¥è¯¢å–å¾—è®°å½•æ€»æ•°
+	 * @return å–å¾—æŸ¥è¯¢å–å¾—è®°å½•æ€»æ•°
 	 */
 	public int getCount() {
 		return count;
 	}
 	/**
-	 * ÉèÖÃ²éÑ¯È¡µÃ¼ÇÂ¼×ÜÊı
-	 * @param count ²éÑ¯È¡µÃ¼ÇÂ¼×ÜÊı
+	 * è®¾ç½®æŸ¥è¯¢å–å¾—è®°å½•æ€»æ•°
+	 * @param count æŸ¥è¯¢å–å¾—è®°å½•æ€»æ•°
 	 */
 	public void setCount(int count) {
 		this.count = (count < 0) ? 0 : count;
@@ -126,21 +126,21 @@ public class PageBean implements Serializable{
 			return;
 		}
 		switch (actionType) {
-		case 1:		//µÚÒ»Ò³
+		case 1:		//ç¬¬ä¸€é¡µ
 			this.page = 1;
 			break;
-		case 2:		//Ç°Ò»Ò³
+		case 2:		//å‰ä¸€é¡µ
 			this.page = min(getPages(), this.page - 1);
 			break;
-		case 3:		//ºóÒ»Ò³
+		case 3:		//åä¸€é¡µ
 			this.page = min(getPages(), this.page + 1);
 			break;
-		case 4:		//×îÄ©Ò³
+		case 4:		//æœ€æœ«é¡µ
 			this.page = getPages();
 			break;
-		case 5:		//Ö¸¶¨Ò³
-		case 6:		//ÖØĞÂÉè¶¨Ã¿Ò³ÏÔÊ¾ÌõÊıÊ±
-		case 0:		//ÎŞÉè¶¨Ê±
+		case 5:		//æŒ‡å®šé¡µ
+		case 6:		//é‡æ–°è®¾å®šæ¯é¡µæ˜¾ç¤ºæ¡æ•°æ—¶
+		case 0:		//æ— è®¾å®šæ—¶
 		default:
 			this.page = min(getPages(), getPage());
 		}
@@ -148,38 +148,38 @@ public class PageBean implements Serializable{
 	}
 	
 	/**
-	 * È¡µÃµ±Ç°²éÑ¯×ÜÒ³Êı
-	 * @return µ±Ç°²éÑ¯×ÜÒ³Êı
+	 * å–å¾—å½“å‰æŸ¥è¯¢æ€»é¡µæ•°
+	 * @return å½“å‰æŸ¥è¯¢æ€»é¡µæ•°
 	 */
 	public int getPages() {
 		return (count + getPageSize() - 1) / getPageSize();
 	}
 	/**
-	 * È¡µÃÆğÊ¼ÏÔÊ¾¼ÇÂ¼ºÅ
-	 * @return ÆğÊ¼ÏÔÊ¾¼ÇÂ¼ºÅ
+	 * å–å¾—èµ·å§‹æ˜¾ç¤ºè®°å½•å·
+	 * @return èµ·å§‹æ˜¾ç¤ºè®°å½•å·
 	 */
 	public int getStartNo() {
 		return ((getPage() - 1) * getPageSize() + 1);
 	}
 	/**
-	 * È¡µÃ½áÊøÏÔÊ¾¼ÇÂ¼ºÅ
-	 * @return ½áÊøÏÔÊ¾¼ÇÂ¼ºÅ
+	 * å–å¾—ç»“æŸæ˜¾ç¤ºè®°å½•å·
+	 * @return ç»“æŸæ˜¾ç¤ºè®°å½•å·
 	 */
 	public int getEndNo() {
 		return Math.min(getPage() * getPageSize(), count);
 	}
 	
 	/**
-	 * È¡µÃÇ°Ò»ÏÔÊ¾Ò³Âë
-	 * @return Ç°Ò»ÏÔÊ¾Ò³Âë
+	 * å–å¾—å‰ä¸€æ˜¾ç¤ºé¡µç 
+	 * @return å‰ä¸€æ˜¾ç¤ºé¡µç 
 	 */
 	public int getPrePageNo() {
 		return Math.max(getPage() - 1, 1);
 	}
 	
 	/**
-	 * È¡µÃºóÒ»ÏÔÊ¾Ò³Âë
-	 * @return ºóÒ»ÏÔÊ¾Ò³Âë
+	 * å–å¾—åä¸€æ˜¾ç¤ºé¡µç 
+	 * @return åä¸€æ˜¾ç¤ºé¡µç 
 	 */
 	public int getNextPageNo() {
 		return Math.min(getPage() + 1, getPages());

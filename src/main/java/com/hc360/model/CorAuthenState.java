@@ -5,62 +5,62 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
- *³Ö¾ÃÀàCorAuthenState
+ *æŒä¹…ç±»CorAuthenState
  *@author Created By b2btool 
  */
 public class CorAuthenState implements Serializable {
 
-	/**Ö÷¼üid*/
+	/**ä¸»é”®id*/
 	    private long id;
-    	/**ÓÃ»§id*/
+    	/**ç”¨æˆ·id*/
 	    private long userid;
-    	/**»áÔ±id*/
+    	/**ä¼šå‘˜id*/
 	    private long providerid;
-    	/**ÓÃ»§Ãû*/
+    	/**ç”¨æˆ·å*/
 	    private String username;
-    	/**¸öÈË×ÊÁÏid*/
+    	/**ä¸ªäººèµ„æ–™id*/
 	    private long personalid = 0L;
-    	/**ÆóÒµ×ÊÁÏid*/
+    	/**ä¼ä¸šèµ„æ–™id*/
 	    private long companyid = 0L;
-    	/**ÉóºËid*/
+    	/**å®¡æ ¸id*/
 	    private long checkid;
-    	/**ÒøĞĞÕËºÅid*/
+    	/**é“¶è¡Œè´¦å·id*/
 	    private long bankid = 0L; 
-    	/**ÓÃ»§ÀàĞÍ0£ºÃâ·Ñ¸öÈË£¬1Ãâ·ÑÆóÒµ¸öÌå¹¤ÉÌ»§£¬2£ºÃâ·ÑÆóÒµ¹«Ë¾£¬3£ºÊÕ·Ñ¸öÈË£¬4£º ÊÕÊÕ·ÑÆóÒµ¸öÌå¹¤ÉÌ»§£¬5£ºÊÕ·ÑÆóÒµ¹«Ë¾*/
+    	/**ç”¨æˆ·ç±»å‹0ï¼šå…è´¹ä¸ªäººï¼Œ1å…è´¹ä¼ä¸šä¸ªä½“å·¥å•†æˆ·ï¼Œ2ï¼šå…è´¹ä¼ä¸šå…¬å¸ï¼Œ3ï¼šæ”¶è´¹ä¸ªäººï¼Œ4ï¼š æ”¶æ”¶è´¹ä¼ä¸šä¸ªä½“å·¥å•†æˆ·ï¼Œ5ï¼šæ”¶è´¹ä¼ä¸šå…¬å¸*/
 	    private String type;
-    	/**ÈÏÖ¤×´Ì¬1:»áÔ±×ÊÁÏÌá½»£¬2£ºÒøĞĞ×ÊÁÏÌá½»£¬3£º´ò¿îÈÏÖ¤Í¨¹ı 11£ºÒøĞĞ×ÊÁÏÌá½» 12 ´ò¿îÈÏÖ¤Í¨¹ı 13 ×ÊÁÏÒÑ¾­Ìá½»*/
+    	/**è®¤è¯çŠ¶æ€1:ä¼šå‘˜èµ„æ–™æäº¤ï¼Œ2ï¼šé“¶è¡Œèµ„æ–™æäº¤ï¼Œ3ï¼šæ‰“æ¬¾è®¤è¯é€šè¿‡ 11ï¼šé“¶è¡Œèµ„æ–™æäº¤ 12 æ‰“æ¬¾è®¤è¯é€šè¿‡ 13 èµ„æ–™å·²ç»æäº¤*/
 	    private String authenstate;
-    	/**»Û¸¶±¦×´Ì¬0:Î´Ìá½»µ½»Û¸¶±¦£¬1£ºÍÆËÍ¸ø»Û¸¶±¦£¬2£º´ò¿î³É¹¦£¬3£º´ò¿îÊ§°Ü*/
+    	/**æ…§ä»˜å®çŠ¶æ€0:æœªæäº¤åˆ°æ…§ä»˜å®ï¼Œ1ï¼šæ¨é€ç»™æ…§ä»˜å®ï¼Œ2ï¼šæ‰“æ¬¾æˆåŠŸï¼Œ3ï¼šæ‰“æ¬¾å¤±è´¥*/
 	    private String hfbstate;
-    	/**ÉóºË×´Ì¬0:Î´ÉóºË£¬1£ºÉóºËÍ¨¹ı£¬2:¾ÜÉó*/
+    	/**å®¡æ ¸çŠ¶æ€0:æœªå®¡æ ¸ï¼Œ1ï¼šå®¡æ ¸é€šè¿‡ï¼Œ2:æ‹’å®¡*/
 	    private String checkedstate;
-    	/**¹«Ë¾Ãû³Æ/ÓÃ»§*/
+    	/**å…¬å¸åç§°/ç”¨æˆ·*/
 	    private String name;
-    	/**ÈÏÖ¤À´Ô´1:ÉêÇëÈÏÖ¤£¬2£ºÌáÏÖ£¬3:Óà¶î¸¶¿î*/
+    	/**è®¤è¯æ¥æº1:ç”³è¯·è®¤è¯ï¼Œ2ï¼šæç°ï¼Œ3:ä½™é¢ä»˜æ¬¾*/
 	    private String sourcetype;
-    	/**´ò¿î½ğ¶î*/
+    	/**æ‰“æ¬¾é‡‘é¢*/
 	    private BigDecimal money = new BigDecimal(0);
-    	/**½ğ¶îÑéÖ¤´ÎÊı*/
+    	/**é‡‘é¢éªŒè¯æ¬¡æ•°*/
 	    private long verifycount;
-    	/**ÉêÇë´ò¿î´ÎÊı*/
+    	/**ç”³è¯·æ‰“æ¬¾æ¬¡æ•°*/
 	    private long applycount;
-    	/**´ò¿îÊ§°Ü±àÂë*/
+    	/**æ‰“æ¬¾å¤±è´¥ç¼–ç */
 	    private String hfbfailcode;
-    	/**´ò¿îÊ§°ÜÔ­Òò*/
+    	/**æ‰“æ¬¾å¤±è´¥åŸå› */
 	    private String hfbfailcause;
-    	/**»Û¸¶±¨Á÷Ë®ºÅ*/
+    	/**æ…§ä»˜æŠ¥æµæ°´å·*/
 	    private String serialnumber;
-    	/**»Û¸¶±¦ÉêÇëÎ¨Ò»id*/
+    	/**æ…§ä»˜å®ç”³è¯·å”¯ä¸€id*/
 	    private String applyuniqueid;
-    	/**360Ììµ½ÆÚÊ±¼ä*/
+    	/**360å¤©åˆ°æœŸæ—¶é—´*/
 	    private Timestamp endtime;
-    	/**´´½¨Ê±¼ä*/
+    	/**åˆ›å»ºæ—¶é—´*/
 	    private Timestamp createtime;
-    	/**ĞŞ¸ÄÊ±¼ä*/
+    	/**ä¿®æ”¹æ—¶é—´*/
 	    private Timestamp updatetime;
-    	/**HFB´ò¿îÍê³ÉÊ±¼ä*/
+    	/**HFBæ‰“æ¬¾å®Œæˆæ—¶é—´*/
 	    private Timestamp hfbtime;
-    	/**ÊÇ·ñ·¢¶ÌĞÅ*/
+    	/**æ˜¯å¦å‘çŸ­ä¿¡*/
 	    private long issend;
     
 	    public Timestamp getHfbtime() {
@@ -76,360 +76,360 @@ public class CorAuthenState implements Serializable {
 			this.issend = issend;
 		}
 /**
-    * È¡µÃid
+    * å–å¾—id
     * @return id
     */
    public long getId () {
        return id;
    }
    /**
-    * ÉèÖÃid
-    * @param id ´ıÉèÖÃid
+    * è®¾ç½®id
+    * @param id å¾…è®¾ç½®id
     */
    public void setId(long id) {
        this.id = id;
    }
    
    /**
-    * È¡µÃuserid
+    * å–å¾—userid
     * @return userid
     */
    public long getUserid () {
        return userid;
    }
    /**
-    * ÉèÖÃuserid
-    * @param userid ´ıÉèÖÃuserid
+    * è®¾ç½®userid
+    * @param userid å¾…è®¾ç½®userid
     */
    public void setUserid(long userid) {
        this.userid = userid;
    }
    
    /**
-    * È¡µÃproviderid
+    * å–å¾—providerid
     * @return providerid
     */
    public long getProviderid () {
        return providerid;
    }
    /**
-    * ÉèÖÃproviderid
-    * @param providerid ´ıÉèÖÃproviderid
+    * è®¾ç½®providerid
+    * @param providerid å¾…è®¾ç½®providerid
     */
    public void setProviderid(long providerid) {
        this.providerid = providerid;
    }
    
    /**
-    * È¡µÃusername
+    * å–å¾—username
     * @return username
     */
    public String getUsername () {
        return username;
    }
    /**
-    * ÉèÖÃusername
-    * @param username ´ıÉèÖÃusername
+    * è®¾ç½®username
+    * @param username å¾…è®¾ç½®username
     */
    public void setUsername(String username) {
        this.username = username;
    }
    
    /**
-    * È¡µÃpersonalid
+    * å–å¾—personalid
     * @return personalid
     */
    public long getPersonalid () {
        return personalid;
    }
    /**
-    * ÉèÖÃpersonalid
-    * @param personalid ´ıÉèÖÃpersonalid
+    * è®¾ç½®personalid
+    * @param personalid å¾…è®¾ç½®personalid
     */
    public void setPersonalid(long personalid) {
        this.personalid = personalid;
    }
    
    /**
-    * È¡µÃcompanyid
+    * å–å¾—companyid
     * @return companyid
     */
    public long getCompanyid () {
        return companyid;
    }
    /**
-    * ÉèÖÃcompanyid
-    * @param companyid ´ıÉèÖÃcompanyid
+    * è®¾ç½®companyid
+    * @param companyid å¾…è®¾ç½®companyid
     */
    public void setCompanyid(long companyid) {
        this.companyid = companyid;
    }
    
    /**
-    * È¡µÃcheckid
+    * å–å¾—checkid
     * @return checkid
     */
    public long getCheckid () {
        return checkid;
    }
    /**
-    * ÉèÖÃcheckid
-    * @param checkid ´ıÉèÖÃcheckid
+    * è®¾ç½®checkid
+    * @param checkid å¾…è®¾ç½®checkid
     */
    public void setCheckid(long checkid) {
        this.checkid = checkid;
    }
    
    /**
-    * È¡µÃbankid
+    * å–å¾—bankid
     * @return bankid
     */
    public long getBankid () {
        return bankid;
    }
    /**
-    * ÉèÖÃbankid
-    * @param bankid ´ıÉèÖÃbankid
+    * è®¾ç½®bankid
+    * @param bankid å¾…è®¾ç½®bankid
     */
    public void setBankid(long bankid) {
        this.bankid = bankid;
    }
    
    /**
-    * È¡µÃtype
+    * å–å¾—type
     * @return type
     */
    public String getType () {
        return type;
    }
    /**
-    * ÉèÖÃtype
-    * @param type ´ıÉèÖÃtype
+    * è®¾ç½®type
+    * @param type å¾…è®¾ç½®type
     */
    public void setType(String type) {
        this.type = type;
    }
    
    /**
-    * È¡µÃauthenstate
+    * å–å¾—authenstate
     * @return authenstate
     */
    public String getAuthenstate () {
        return authenstate;
    }
    /**
-    * ÉèÖÃauthenstate
-    * @param authenstate ´ıÉèÖÃauthenstate
+    * è®¾ç½®authenstate
+    * @param authenstate å¾…è®¾ç½®authenstate
     */
    public void setAuthenstate(String authenstate) {
        this.authenstate = authenstate;
    }
    
    /**
-    * È¡µÃhfbstate
+    * å–å¾—hfbstate
     * @return hfbstate
     */
    public String getHfbstate () {
        return hfbstate;
    }
    /**
-    * ÉèÖÃhfbstate
-    * @param hfbstate ´ıÉèÖÃhfbstate
+    * è®¾ç½®hfbstate
+    * @param hfbstate å¾…è®¾ç½®hfbstate
     */
    public void setHfbstate(String hfbstate) {
        this.hfbstate = hfbstate;
    }
    
    /**
-    * È¡µÃcheckedstate
+    * å–å¾—checkedstate
     * @return checkedstate
     */
    public String getCheckedstate () {
        return checkedstate;
    }
    /**
-    * ÉèÖÃcheckedstate
-    * @param checkedstate ´ıÉèÖÃcheckedstate
+    * è®¾ç½®checkedstate
+    * @param checkedstate å¾…è®¾ç½®checkedstate
     */
    public void setCheckedstate(String checkedstate) {
        this.checkedstate = checkedstate;
    }
    
    /**
-    * È¡µÃname
+    * å–å¾—name
     * @return name
     */
    public String getName () {
        return name;
    }
    /**
-    * ÉèÖÃname
-    * @param name ´ıÉèÖÃname
+    * è®¾ç½®name
+    * @param name å¾…è®¾ç½®name
     */
    public void setName(String name) {
        this.name = name;
    }
    
    /**
-    * È¡µÃsourcetype
+    * å–å¾—sourcetype
     * @return sourcetype
     */
    public String getSourcetype () {
        return sourcetype;
    }
    /**
-    * ÉèÖÃsourcetype
-    * @param sourcetype ´ıÉèÖÃsourcetype
+    * è®¾ç½®sourcetype
+    * @param sourcetype å¾…è®¾ç½®sourcetype
     */
    public void setSourcetype(String sourcetype) {
        this.sourcetype = sourcetype;
    }
    
    /**
-    * È¡µÃmoney
+    * å–å¾—money
     * @return money
     */
    public BigDecimal getMoney () {
        return money;
    }
    /**
-    * ÉèÖÃmoney
-    * @param money ´ıÉèÖÃmoney
+    * è®¾ç½®money
+    * @param money å¾…è®¾ç½®money
     */
    public void setMoney(BigDecimal money) {
        this.money = money;
    }
    
    /**
-    * È¡µÃverifycount
+    * å–å¾—verifycount
     * @return verifycount
     */
    public long getVerifycount () {
        return verifycount;
    }
    /**
-    * ÉèÖÃverifycount
-    * @param verifycount ´ıÉèÖÃverifycount
+    * è®¾ç½®verifycount
+    * @param verifycount å¾…è®¾ç½®verifycount
     */
    public void setVerifycount(long verifycount) {
        this.verifycount = verifycount;
    }
    
    /**
-    * È¡µÃapplycount
+    * å–å¾—applycount
     * @return applycount
     */
    public long getApplycount () {
        return applycount;
    }
    /**
-    * ÉèÖÃapplycount
-    * @param applycount ´ıÉèÖÃapplycount
+    * è®¾ç½®applycount
+    * @param applycount å¾…è®¾ç½®applycount
     */
    public void setApplycount(long applycount) {
        this.applycount = applycount;
    }
    
    /**
-    * È¡µÃhfbfailcode
+    * å–å¾—hfbfailcode
     * @return hfbfailcode
     */
    public String getHfbfailcode () {
        return hfbfailcode;
    }
    /**
-    * ÉèÖÃhfbfailcode
-    * @param hfbfailcode ´ıÉèÖÃhfbfailcode
+    * è®¾ç½®hfbfailcode
+    * @param hfbfailcode å¾…è®¾ç½®hfbfailcode
     */
    public void setHfbfailcode(String hfbfailcode) {
        this.hfbfailcode = hfbfailcode;
    }
    
    /**
-    * È¡µÃhfbfailcause
+    * å–å¾—hfbfailcause
     * @return hfbfailcause
     */
    public String getHfbfailcause () {
        return hfbfailcause;
    }
    /**
-    * ÉèÖÃhfbfailcause
-    * @param hfbfailcause ´ıÉèÖÃhfbfailcause
+    * è®¾ç½®hfbfailcause
+    * @param hfbfailcause å¾…è®¾ç½®hfbfailcause
     */
    public void setHfbfailcause(String hfbfailcause) {
        this.hfbfailcause = hfbfailcause;
    }
    
    /**
-    * È¡µÃserialnumber
+    * å–å¾—serialnumber
     * @return serialnumber
     */
    public String getSerialnumber () {
        return serialnumber;
    }
    /**
-    * ÉèÖÃserialnumber
-    * @param serialnumber ´ıÉèÖÃserialnumber
+    * è®¾ç½®serialnumber
+    * @param serialnumber å¾…è®¾ç½®serialnumber
     */
    public void setSerialnumber(String serialnumber) {
        this.serialnumber = serialnumber;
    }
    
    /**
-    * È¡µÃapplyuniqueid
+    * å–å¾—applyuniqueid
     * @return applyuniqueid
     */
    public String getApplyuniqueid () {
        return applyuniqueid;
    }
    /**
-    * ÉèÖÃapplyuniqueid
-    * @param applyuniqueid ´ıÉèÖÃapplyuniqueid
+    * è®¾ç½®applyuniqueid
+    * @param applyuniqueid å¾…è®¾ç½®applyuniqueid
     */
    public void setApplyuniqueid(String applyuniqueid) {
        this.applyuniqueid = applyuniqueid;
    }
    
    /**
-    * È¡µÃendtime
+    * å–å¾—endtime
     * @return endtime
     */
    public Timestamp getEndtime () {
        return endtime;
    }
    /**
-    * ÉèÖÃendtime
-    * @param endtime ´ıÉèÖÃendtime
+    * è®¾ç½®endtime
+    * @param endtime å¾…è®¾ç½®endtime
     */
    public void setEndtime(Timestamp endtime) {
        this.endtime = endtime;
    }
    
    /**
-    * È¡µÃcreatetime
+    * å–å¾—createtime
     * @return createtime
     */
    public Timestamp getCreatetime () {
        return createtime;
    }
    /**
-    * ÉèÖÃcreatetime
-    * @param createtime ´ıÉèÖÃcreatetime
+    * è®¾ç½®createtime
+    * @param createtime å¾…è®¾ç½®createtime
     */
    public void setCreatetime(Timestamp createtime) {
        this.createtime = createtime;
    }
    
    /**
-    * È¡µÃupdatetime
+    * å–å¾—updatetime
     * @return updatetime
     */
    public Timestamp getUpdatetime () {
        return updatetime;
    }
    /**
-    * ÉèÖÃupdatetime
-    * @param updatetime ´ıÉèÖÃupdatetime
+    * è®¾ç½®updatetime
+    * @param updatetime å¾…è®¾ç½®updatetime
     */
    public void setUpdatetime(Timestamp updatetime) {
        this.updatetime = updatetime;

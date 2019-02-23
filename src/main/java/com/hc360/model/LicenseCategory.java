@@ -4,155 +4,155 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- *³Ö¾ÃÀàLicenseCategory
+ *æŒä¹…ç±»LicenseCategory
  *@author Created By b2btool 
  */
 public class LicenseCategory implements Serializable {
 
-	/**Ö÷¼üID*/
+	/**ä¸»é”®ID*/
 	    private long id;
-    	/**·ÖÀàÃû*/
+    	/**åˆ†ç±»å*/
 	    private String catname;
-    	/**·ÖÀàËµÃ÷*/
+    	/**åˆ†ç±»è¯´æ˜*/
 	    private String catdesc;
-    	/**·ÖÀàĞ­ÒéURL*/
+    	/**åˆ†ç±»åè®®URL*/
 	    private String protocol;
-    	/**²Ù×÷ÈË*/
+    	/**æ“ä½œäºº*/
 	    private String operator;
-    	/**·¢²¼Ê±¼ä*/
+    	/**å‘å¸ƒæ—¶é—´*/
 	    private Timestamp pubdate;
-    	/**·ÖÀàµÄÀàĞÍ(0±íÊ¾ĞèÉÏ´«Ö¤Êé£¬1±íÊ¾ĞèÇ©ÊğĞ­Òé)*/
+    	/**åˆ†ç±»çš„ç±»å‹(0è¡¨ç¤ºéœ€ä¸Šä¼ è¯ä¹¦ï¼Œ1è¡¨ç¤ºéœ€ç­¾ç½²åè®®)*/
 	    private String cattype;
-    	/**£¨±£Áô×Ö¶Î£©*/
+    	/**ï¼ˆä¿ç•™å­—æ®µï¼‰*/
 	    private String status;
-	    //ÒÔÏÂËÄ¸ö±äÁ¿ĞÂÔöÓÚ 2016.9.5 zwr
-  		//ÊÚÈ¨Ç°ÊÇ·ñÖ§³ÖÔÚÏß½»Ò×  
+	    //ä»¥ä¸‹å››ä¸ªå˜é‡æ–°å¢äº 2016.9.5 zwr
+  		//æˆæƒå‰æ˜¯å¦æ”¯æŒåœ¨çº¿äº¤æ˜“  
   		private String besuponline;
   		
-  		//ÊÚÈ¨Ç°ÊÇ·ñ±ØĞëÈË¹¤ÉóºË
+  		//æˆæƒå‰æ˜¯å¦å¿…é¡»äººå·¥å®¡æ ¸
   		private String becheck;
   		
-  		//ÊÚÈ¨ºóÊÇ·ñÖ§³ÖÔÚÏß½»Ò×  
+  		//æˆæƒåæ˜¯å¦æ”¯æŒåœ¨çº¿äº¤æ˜“  
   		private String afsuponline;
   		
-  		//ÊÚÈ¨ºóÊÇ·ñ±ØĞëÈË¹¤ÉóºË
+  		//æˆæƒåæ˜¯å¦å¿…é¡»äººå·¥å®¡æ ¸
   		private String afcheck;
     
    /**
-    * È¡µÃid
+    * å–å¾—id
     * @return id
     */
    public long getId () {
        return id;
    }
    /**
-    * ÉèÖÃid
-    * @param id ´ıÉèÖÃid
+    * è®¾ç½®id
+    * @param id å¾…è®¾ç½®id
     */
    public void setId(long id) {
        this.id = id;
    }
    
    /**
-    * È¡µÃcatname
+    * å–å¾—catname
     * @return catname
     */
    public String getCatname () {
        return catname;
    }
    /**
-    * ÉèÖÃcatname
-    * @param catname ´ıÉèÖÃcatname
+    * è®¾ç½®catname
+    * @param catname å¾…è®¾ç½®catname
     */
    public void setCatname(String catname) {
        this.catname = catname;
    }
    
    /**
-    * È¡µÃcatdesc
+    * å–å¾—catdesc
     * @return catdesc
     */
    public String getCatdesc () {
        return catdesc;
    }
    /**
-    * ÉèÖÃcatdesc
-    * @param catdesc ´ıÉèÖÃcatdesc
+    * è®¾ç½®catdesc
+    * @param catdesc å¾…è®¾ç½®catdesc
     */
    public void setCatdesc(String catdesc) {
        this.catdesc = catdesc;
    }
    
    /**
-    * È¡µÃprotocol
+    * å–å¾—protocol
     * @return protocol
     */
    public String getProtocol () {
        return protocol;
    }
    /**
-    * ÉèÖÃprotocol
-    * @param protocol ´ıÉèÖÃprotocol
+    * è®¾ç½®protocol
+    * @param protocol å¾…è®¾ç½®protocol
     */
    public void setProtocol(String protocol) {
        this.protocol = protocol;
    }
    
    /**
-    * È¡µÃoperator
+    * å–å¾—operator
     * @return operator
     */
    public String getOperator () {
        return operator;
    }
    /**
-    * ÉèÖÃoperator
-    * @param operator ´ıÉèÖÃoperator
+    * è®¾ç½®operator
+    * @param operator å¾…è®¾ç½®operator
     */
    public void setOperator(String operator) {
        this.operator = operator;
    }
    
    /**
-    * È¡µÃpubdate
+    * å–å¾—pubdate
     * @return pubdate
     */
    public Timestamp getPubdate () {
        return pubdate;
    }
    /**
-    * ÉèÖÃpubdate
-    * @param pubdate ´ıÉèÖÃpubdate
+    * è®¾ç½®pubdate
+    * @param pubdate å¾…è®¾ç½®pubdate
     */
    public void setPubdate(Timestamp pubdate) {
        this.pubdate = pubdate;
    }
    
    /**
-    * È¡µÃcattype
+    * å–å¾—cattype
     * @return cattype
     */
    public String getCattype () {
        return cattype;
    }
    /**
-    * ÉèÖÃcattype
-    * @param cattype ´ıÉèÖÃcattype
+    * è®¾ç½®cattype
+    * @param cattype å¾…è®¾ç½®cattype
     */
    public void setCattype(String cattype) {
        this.cattype = cattype;
    }
    
    /**
-    * È¡µÃstatus
+    * å–å¾—status
     * @return status
     */
    public String getStatus () {
        return status;
    }
    /**
-    * ÉèÖÃstatus
-    * @param status ´ıÉèÖÃstatus
+    * è®¾ç½®status
+    * @param status å¾…è®¾ç½®status
     */
    public void setStatus(String status) {
        this.status = status;

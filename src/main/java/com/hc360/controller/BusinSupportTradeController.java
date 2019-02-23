@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * ÔÚÏß½»Ò×Àà
+ * åœ¨çº¿äº¤æ˜“ç±»
  * @author hk
  * @date 2019-02-22
  */
@@ -27,7 +27,7 @@ public class BusinSupportTradeController {
     BusinSupportTradeService businSupportTradeService;
 
     /**
-     * »ñÈ¡ËùÓĞĞèÒªÖ¤Êé·ÖÀà
+     * è·å–æ‰€æœ‰éœ€è¦è¯ä¹¦åˆ†ç±»
      * @author hk
      * @date 2019-02-22
      * @return
@@ -40,7 +40,7 @@ public class BusinSupportTradeController {
 
 
     /**
-     * Í¨¹ıÖ¤Êé·ÖÀà»ñÈ¡ÉÌ»úµÄ·ÖÀà
+     * é€šè¿‡è¯ä¹¦åˆ†ç±»è·å–å•†æœºçš„åˆ†ç±»
      * @author hk
      * @date 2019-02-22
      * @return
@@ -52,14 +52,14 @@ public class BusinSupportTradeController {
     }
 
     /**
-     * ´ÓÊı¾İ¿â»ñÈ¡·ÖÀàÉèÖÃĞÅÏ¢
+     * ä»æ•°æ®åº“è·å–åˆ†ç±»è®¾ç½®ä¿¡æ¯
      * @author hk
      * @date 2019-02-22
      * @throws Exception
      */
     @RequestMapping("/getlicensecategorydb/{supcatid}")
     public LicenseCategory getLicenseCategoryDB(@PathVariable("supcatid") String supcatid) throws Exception {
-        //´Ócorp¿â»ñÈ¡·ÖÀàÉèÖÃ
+        //ä»corpåº“è·å–åˆ†ç±»è®¾ç½®
         List<LicenseCategory> lcs=businSupportTradeService.getLicenseCategoryAll();
         if(lcs!=null&&lcs.size()>0) {
             for(LicenseCategory lc:lcs){
@@ -80,7 +80,7 @@ public class BusinSupportTradeController {
     }
 
     /**
-     * »ñÈ¡ËùÓĞÓÃ»§ÒÑÊÚÈ¨·ÖÀà
+     * è·å–æ‰€æœ‰ç”¨æˆ·å·²æˆæƒåˆ†ç±»
      * @author hk
      * @date 2019-02-22
      * @return
@@ -92,7 +92,7 @@ public class BusinSupportTradeController {
     }
 
     /**
-     * »ñÈ¡ÓÃ»§ÊÚÈ¨Ã÷Ï¸
+     * è·å–ç”¨æˆ·æˆæƒæ˜ç»†
      * @author hk
      * @date 2019-02-22
      * @return
@@ -104,7 +104,7 @@ public class BusinSupportTradeController {
     }
 
     /**
-     * »ñÈ¡Ö¸¶¨ÓÃ»§ÊÚÈ¨ĞÅÏ¢
+     * è·å–æŒ‡å®šç”¨æˆ·æˆæƒä¿¡æ¯
      * @throws Exception
      */
     @RequestMapping("/getuserlicensedb/{providerid}/{licatid}")
@@ -112,7 +112,7 @@ public class BusinSupportTradeController {
         if(providerid==0l || StringUtils.isBlank(licatid)){
             return null;
         }
-        //´ÓÊı¾İ¿â»ñÈ¡ÊÚÈ¨ĞÅÏ¢
+        //ä»æ•°æ®åº“è·å–æˆæƒä¿¡æ¯
         List<UserLicense> uls=businSupportTradeService.getUserLicenseAllByProviderid(providerid);
         if(uls!=null&&uls.size()>0) {
             for(UserLicense ul:uls){
@@ -126,7 +126,7 @@ public class BusinSupportTradeController {
         }
     }
     /**
-     * »ñÈ¡Ö¸¶¨ÓÃ»§ÊÚÈ¨·ÖÀà×´Ì¬
+     * è·å–æŒ‡å®šç”¨æˆ·æˆæƒåˆ†ç±»çŠ¶æ€
      * @author hk
      * @date 2019-02-22
      * @return

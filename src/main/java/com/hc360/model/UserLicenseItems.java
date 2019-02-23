@@ -4,126 +4,126 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- *³Ö¾ÃÀàUserLicenseItems
+ *æŒä¹…ç±»UserLicenseItems
  *@author Created By b2btool 
  */
 public class UserLicenseItems implements Serializable {
 
-	/**Ö÷¼üID*/
+	/**ä¸»é”®ID*/
 	    private long id;
-    	/**ÉÌ»§µÄÖ¤Êé·ÖÀàID*/
+    	/**å•†æˆ·çš„è¯ä¹¦åˆ†ç±»ID*/
 	    private String userliid;
-    	/**Ö¤ÊéÃû³Æ*/
+    	/**è¯ä¹¦åç§°*/
 	    private String licensename;
-    	/**Í¼Æ¬Ãû³Æ*/
+    	/**å›¾ç‰‡åç§°*/
 	    private String picpath;
-    	/**·¢²¼Ê±¼ä*/
+    	/**å‘å¸ƒæ—¶é—´*/
 	    private Timestamp pubdate;
-    	/**ÓĞĞ§ÆÚ*/
+    	/**æœ‰æ•ˆæœŸ*/
 	    private Timestamp enddate;
-    	/**×´Ì¬£¨0±íÊ¾Õı³££¬1±íÊ¾ÒÑÉ¾³ı£©*/
+    	/**çŠ¶æ€ï¼ˆ0è¡¨ç¤ºæ­£å¸¸ï¼Œ1è¡¨ç¤ºå·²åˆ é™¤ï¼‰*/
 	    private String status;
     
    /**
-    * È¡µÃid
+    * å–å¾—id
     * @return id
     */
    public long getId () {
        return id;
    }
    /**
-    * ÉèÖÃid
-    * @param id ´ıÉèÖÃid
+    * è®¾ç½®id
+    * @param id å¾…è®¾ç½®id
     */
    public void setId(long id) {
        this.id = id;
    }
    
    /**
-    * È¡µÃuserliid
+    * å–å¾—userliid
     * @return userliid
     */
    public String getUserliid () {
        return userliid;
    }
    /**
-    * ÉèÖÃuserliid
-    * @param userliid ´ıÉèÖÃuserliid
+    * è®¾ç½®userliid
+    * @param userliid å¾…è®¾ç½®userliid
     */
    public void setUserliid(String userliid) {
        this.userliid = userliid;
    }
    
    /**
-    * È¡µÃlicensename
+    * å–å¾—licensename
     * @return licensename
     */
    public String getLicensename () {
        return licensename;
    }
    /**
-    * ÉèÖÃlicensename
-    * @param licensename ´ıÉèÖÃlicensename
+    * è®¾ç½®licensename
+    * @param licensename å¾…è®¾ç½®licensename
     */
    public void setLicensename(String licensename) {
        this.licensename = licensename;
    }
    
    /**
-    * È¡µÃpicpath
+    * å–å¾—picpath
     * @return picpath
     */
    public String getPicpath () {
        return picpath;
    }
    /**
-    * ÉèÖÃpicpath
-    * @param picpath ´ıÉèÖÃpicpath
+    * è®¾ç½®picpath
+    * @param picpath å¾…è®¾ç½®picpath
     */
    public void setPicpath(String picpath) {
        this.picpath = picpath;
    }
    
    /**
-    * È¡µÃpubdate
+    * å–å¾—pubdate
     * @return pubdate
     */
    public Timestamp getPubdate () {
        return pubdate;
    }
    /**
-    * ÉèÖÃpubdate
-    * @param pubdate ´ıÉèÖÃpubdate
+    * è®¾ç½®pubdate
+    * @param pubdate å¾…è®¾ç½®pubdate
     */
    public void setPubdate(Timestamp pubdate) {
        this.pubdate = pubdate;
    }
    
    /**
-    * È¡µÃenddate
+    * å–å¾—enddate
     * @return enddate
     */
    public Timestamp getEnddate () {
        return enddate;
    }
    /**
-    * ÉèÖÃenddate
-    * @param enddate ´ıÉèÖÃenddate
+    * è®¾ç½®enddate
+    * @param enddate å¾…è®¾ç½®enddate
     */
    public void setEnddate(Timestamp enddate) {
        this.enddate = enddate;
    }
    
    /**
-    * È¡µÃstatus
+    * å–å¾—status
     * @return status
     */
    public String getStatus () {
        return status;
    }
    /**
-    * ÉèÖÃstatus
-    * @param status ´ıÉèÖÃstatus
+    * è®¾ç½®status
+    * @param status å¾…è®¾ç½®status
     */
    public void setStatus(String status) {
        this.status = status;
