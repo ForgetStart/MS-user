@@ -1,10 +1,9 @@
 package com.hc360.service;
 
-import com.hc360.vo.CorTable;
-import com.hc360.vo.MainArea;
-import com.hc360.vo.OnCorTable;
-import com.hc360.vo.RecvnotesParam;
+import com.hc360.dao.base.UserBaseMessageProvider;
+import com.hc360.vo.*;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.List;
 
@@ -100,4 +99,20 @@ public interface UserMessageService {
      * @throws Exception
      */
     int findLeaveWordCount(RecvnotesParam recvparam) throws Exception;
+
+    /**
+     * 查询城市
+     * @param cityVo
+     * @return
+     * @throws Exception
+     */
+    CityVo findCity(CityVo cityVo) throws Exception;
+
+    /**
+     * 查询省份
+     * @param provinceVo
+     * @return
+     * @throws Exception
+     */
+    CityVo findProvince(ProvinceVo provinceVo) throws Exception;
 }

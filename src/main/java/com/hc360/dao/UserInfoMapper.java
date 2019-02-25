@@ -50,4 +50,9 @@ public interface UserInfoMapper {
     @SelectProvider(type = UserBaseMessageProvider.class, method = "findLeaveWordCount")
     int findLeaveWordCount(RecvnotesParam recvparam) throws Exception;
 
+    @SelectProvider(type = UserBaseMessageProvider.class, method = "findCity")
+    CityVo findCity(CityVo cityVo) throws Exception;
+
+    @SelectProvider(type = UserBaseMessageProvider.class, method = "findProvince")
+    CityVo findProvince(ProvinceVo provinceVo) throws Exception;
 }

@@ -1,6 +1,8 @@
 package com.hc360.dao.base;
 
+import com.hc360.vo.CityVo;
 import com.hc360.vo.OnCorTable;
+import com.hc360.vo.ProvinceVo;
 import com.hc360.vo.RecvnotesParam;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
@@ -65,6 +67,45 @@ public class UserBaseMessageProvider {
                     sql.append( " and ( a.notetype =0 or a.notetype =1 ) " );
                 }
             }
+        }.toString();
+    }
+
+
+    public String findCity(CityVo cityVo){
+        return new SQL(){
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.append("SELECT * FROM CITY c where 1 = 1");
+
+                if(cityVo.getId() != null){
+                    sql.append(" c.id = #{id}");
+                }
+
+                if(StringUtils.isNotBlank(cityVo.getCityCode())){
+                    sql.append(" c.citycode = #{cityCode}");
+                }
+            }
+
+
+        }.toString();
+    }
+
+    public String findProvince(ProvinceVo provinceVo){
+        return new SQL(){
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.append("SELECT * FROM PROVINCE p where 1 = 1");
+
+                if(provinceVo.getId() != null){
+                    sql.append(" p.id = #{id}");
+                }
+
+                if(null != provinceVo.getCountryId()){
+                    sql.append(" p.country_id = #{countryId}");
+                }
+            }
+
+
         }.toString();
     }
 }

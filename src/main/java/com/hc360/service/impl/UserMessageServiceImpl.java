@@ -167,5 +167,18 @@ public class UserMessageServiceImpl implements UserMessageService {
         return userInfoMapper.findLeaveWordCount(recvparam);
     }
 
+    @Override
+    public CityVo findCity(CityVo cityVo) throws Exception {
+        //先查询缓存
+        return userInfoMapper.findCity(cityVo);
+    }
+
+    @Override
+    public CityVo findProvince(ProvinceVo provinceVo) throws Exception {
+        //先查询缓存
+
+        return userInfoMapper.findProvince(provinceVo);
+    }
+
 
 }
