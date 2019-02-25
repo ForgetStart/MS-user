@@ -1,7 +1,7 @@
 package com.hc360.service.impl;
 
 import com.hc360.dao.UserInfoMapper;
-import com.hc360.mmt.db.dao.common.market.SearchScreenKeyword;
+//import com.hc360.mmt.db.dao.common.market.SearchScreenKeyword;
 import com.hc360.service.UserMessageService;
 import com.hc360.vo.*;
 import org.apache.commons.lang.StringUtils;
@@ -116,7 +116,8 @@ public class UserMessageServiceImpl implements UserMessageService {
      */
     @Override
     public List<String> getAllowScreenKeyword(Long providerId) throws Exception {
-        return SearchScreenKeyword.getAllowScreenKeyword(providerId);
+        //return SearchScreenKeyword.getAllowScreenKeyword(providerId);
+        return null;
     }
 
     /**

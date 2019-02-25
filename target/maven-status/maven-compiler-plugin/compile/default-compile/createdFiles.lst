@@ -1,7 +1,6 @@
 com\hc360\vo\OnCorTable.class
 com\hc360\common\util\CookieUtils.class
 com\hc360\dao\base\UserBaseMessageProvider.class
-com\hc360\common\AppConstants.class
 com\hc360\dao\UserInfoMapper.class
 com\hc360\vo\CorTable.class
 com\hc360\web\Filter1.class
@@ -10,7 +9,6 @@ com\hc360\ServletInitializer.class
 com\hc360\vo\CorBackListVo.class
 com\hc360\service\impl\UserMessageServiceImpl.class
 com\hc360\common\page\PageBean.class
-com\hc360\common\AppConstants$SysName.class
 com\hc360\service\BusinSupportTradeService.class
 com\hc360\common\PageRecordBean.class
 com\hc360\controller\UserMessageController.class
