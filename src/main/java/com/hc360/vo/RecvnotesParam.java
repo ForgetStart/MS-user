@@ -1,7 +1,5 @@
 package com.hc360.vo;
 
-import com.hc360.mmt.common.bean.PageBean;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -38,8 +36,6 @@ public class RecvnotesParam implements Serializable {
     private Date startDate;
 
     private Date endDate;
-
-    private PageBean page;
 
     //商机的id
     long infoid ;
@@ -163,14 +159,6 @@ public class RecvnotesParam implements Serializable {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
-
-    public PageBean getPage() {
-        return page;
-    }
-
-    public void setPage(PageBean page) {
-        this.page = page;
     }
 
     public long getInfoid() {

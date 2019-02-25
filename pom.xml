@@ -1,19 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>MS-User</groupId>
-	<artifactId>MS-User</artifactId>
+
+	<groupId>com.hc360</groupId>
+	<artifactId>msuser</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
-	
-	<name>MS-User</name>
-	<url>http://maven.apache.org</url>
-	
+
+	<name>msuser</name>
+	<description>microservice msuser</description>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 	</properties>
-	
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -47,39 +48,39 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.1.1</version>
 		</dependency>
 		<dependency>
-		   <groupId>org.springframework.cloud</groupId>
-		   <artifactId>spring-cloud-starter-eureka</artifactId>
-		   <version>1.2.4.RELEASE</version>
-		</dependency>	
-	  	<dependency>
-	        <groupId>com.Oracle</groupId>
-	        <artifactId>ojdbc6</artifactId>
-	        <version>11.2.0.3.0</version>
-     	</dependency>	
-     	
-     	<dependency>
-		  	<groupId>sso</groupId>
-		  	<artifactId>sso-client</artifactId>
-		  	<version>4.5.3</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<version>1.2.4.RELEASE</version>
 		</dependency>
 		<dependency>
-	        <groupId>mmt</groupId>
-	        <artifactId>b2b</artifactId>
-	        <!-- <version>4.4.20160623.1</version> -->
-	         <version>4.4.20181116.1</version>
-	        <exclusions>
-	        	<exclusion>
-	        		<artifactId>hibernate</artifactId>
-	        		<groupId>hibernate</groupId>
-	        	</exclusion>
-	        </exclusions>
+			<groupId>com.Oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>sso</groupId>
+			<artifactId>sso-client</artifactId>
+			<version>4.5.3</version>
+		</dependency>
+		<dependency>
+			<groupId>mmt</groupId>
+			<artifactId>b2b</artifactId>
+			<!-- <version>4.4.20160623.1</version> -->
+			<version>4.4.20181116.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>hibernate</artifactId>
+					<groupId>hibernate</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>mmt</groupId>
@@ -108,23 +109,22 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-	    <dependency>
-		  <groupId>com.hc360.redis</groupId>
-		  <artifactId>RedisClient</artifactId>
-		  <version>0.7.0-cluster-ms</version>
+		<dependency>
+			<groupId>com.hc360.redis</groupId>
+			<artifactId>RedisClient</artifactId>
+			<version>0.7.0-cluster-ms</version>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.1.23</version>		
+			<version>1.1.23</version>
 		</dependency>
 		<dependency>
-	      <groupId>json</groupId>
-	      <artifactId>json-lib</artifactId>
-	      <version>2.3-jdk15</version>
-	    </dependency> 
-	    <dependency>
+			<groupId>json</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.3-jdk15</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
@@ -150,25 +150,25 @@
 		</dependency>
 
 		<dependency>
-		    <groupId>commons-configuration</groupId>
-		    <artifactId>commons-configuration</artifactId>
-		    <version>1.10</version>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.10</version>
 		</dependency>
-		
+
 		<dependency>
-	      <groupId>ezmorph</groupId>
-	      <artifactId>ezmorph</artifactId>
-	      <version>1.0.6</version>
-	    </dependency>
-	    <dependency>
+			<groupId>ezmorph</groupId>
+			<artifactId>ezmorph</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+		<dependency>
 			<groupId>mmt</groupId>
 			<artifactId>sso-dec-cookie</artifactId>
 			<version>1.0</version>
 		</dependency>
 		<dependency>
-		  <groupId>hclog4j</groupId>
-		  <artifactId>hc-log4j</artifactId>
-		  <version>2.1.4</version>
+			<groupId>hclog4j</groupId>
+			<artifactId>hc-log4j</artifactId>
+			<version>2.1.4</version>
 		</dependency>
 
 		<dependency>
@@ -194,11 +194,11 @@
 		</plugins>
 		<resources>
 			<resource>
-			
+
 				<directory>src/main/resources</directory>
-				<includes> 
-					<include>**/*</include> 
-				</includes> 
+				<includes>
+					<include>**/*</include>
+				</includes>
 			</resource>
 			<resource>
 				<directory>src/main/java</directory>
@@ -206,7 +206,7 @@
 					<include>**/*.properties</include>
 					<include>**/*.xml</include>
 				</includes>
-			</resource> 
+			</resource>
 		</resources>
 	</build>
 
