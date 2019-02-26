@@ -44,7 +44,7 @@ public interface UserInfoMapper {
     @Select("select sa.areaname from sys_area sa where sa.areacode = #{areaCode}")
     String findAreaNameByAreaCode(@Param("areaCode") String areaCode) throws Exception;
 
-    @Select("select  * from mobile_bind mb where mb.providerid = #{providerId} and mb.isbind = #{isBind}")
+    @Select("select count(1) from mobile_bind mb where mb.providerid = #{providerId} and mb.isbind = #{isBind}")
     int isBindMobile(@Param("providerId") Long providerId, @Param("isBind") Long isBind) throws Exception;
 
     @SelectProvider(type = UserBaseMessageProvider.class, method = "findLeaveWordCount")
