@@ -19,7 +19,7 @@ public class UserBaseMessageProvider {
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append("select oct.providerid,oct.name,oct.address,oct.contacter,oct.telephone,oct.mp,oct.username,");
+        sql.append("select oct.providerid as id,oct.name,oct.address,oct.contacter,oct.telephone,oct.mp,oct.username,");
         sql.append("oct.checked,oct.states,oct.memtypeid,oct.areaid,oct.userid,oct.unchecked,oct.freeshop,oct.identity");
         sql.append(",oct.degrade");
         sql.append(" from on_cor_table oct where 1 = 1");

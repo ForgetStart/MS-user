@@ -17,13 +17,13 @@ import java.util.List;
 @Mapper
 public interface UserInfoMapper {
 
-    @Select("select * from on_cor_table oct where oct.providerid = #{providerId} and oct.states = '0'")
+    @Select("select oct.*,oct.providerid as id from on_cor_table oct where oct.providerid = #{providerId} and oct.states = '0'")
     OnCorTable findOnCorTableByProviderId(@Param("providerId") Long providerId) throws Exception;
 
     @SelectProvider(type = UserBaseMessageProvider.class, method = "SelectUserWithParam")
     OnCorTable findUserBaseByOnCorTable(OnCorTable onCorTable) throws Exception;
 
-    @Select("select * from cor_table oct where oct.providerid = #{providerId} and oct.CHECKED = 1")
+    @Select("select oct.*,oct.providerid as id from cor_table oct where oct.providerid = #{providerId} and oct.CHECKED = 1")
     CorTable findCorTableByProviderIdAndChecked(@Param("providerId") Long providerId) throws Exception;
 
     @Select("select * from cor_backlist cb where cb.providerid = #{providerId} and cb.states = #{states}")
