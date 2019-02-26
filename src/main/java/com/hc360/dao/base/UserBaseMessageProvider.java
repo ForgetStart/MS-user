@@ -26,23 +26,23 @@ public class UserBaseMessageProvider {
                 sql.append(" from on_cor_table oct where 1 = 1");
 
                 if (onCorTable.getUserid() != 0){
-                    sql.append(" and oct.userid = #{userid}");
+                    sql.append(" and oct.userid = " + onCorTable.getUserid());
                 }
 
                 if(onCorTable.getProvinceid() != 0){
-                    sql.append(" and oct.providerid = #{provinceid}");
+                    sql.append(" and oct.providerid = " + onCorTable.getProvinceid());
                 }
 
                 if(StringUtils.isNotBlank(onCorTable.getChecked())){
-                    sql.append(" and oct.checked = #{checked}");
+                    sql.append(" and oct.checked = " + onCorTable.getChecked());
                 }
 
                 if(StringUtils.isNotBlank(onCorTable.getStates())){
-                    sql.append(" and oct.states = #{states}");
+                    sql.append(" and oct.states = " + onCorTable.getStates());
                 }
 
                 if(StringUtils.isNotBlank(onCorTable.getUnchecked())){
-                    sql.append(" and oct.unchecked = #{unchecked}");
+                    sql.append(" and oct.unchecked = " + onCorTable.getUnchecked());
                 }
             }
         }.toString();
@@ -60,7 +60,7 @@ public class UserBaseMessageProvider {
 
                 // 相关信息类型
                 if (StringUtils.isNotBlank(recvparam.getInfotype())) {
-                    sql.append( " and a.infotype =#{infotype} " );
+                    sql.append( " and a.infotype = " + recvparam.getInfotype() );
                 }
                 // 只查询非系统留言
                 if ( recvparam.isNotSysnote() ) {
@@ -78,11 +78,11 @@ public class UserBaseMessageProvider {
                 sql.append("SELECT * FROM CITY c where 1 = 1");
 
                 if(cityVo.getId() != null){
-                    sql.append(" c.id = #{id}");
+                    sql.append(" c.id = " + cityVo.getId());
                 }
 
                 if(StringUtils.isNotBlank(cityVo.getCityCode())){
-                    sql.append(" c.citycode = #{cityCode}");
+                    sql.append(" c.citycode = " + cityVo.getCityCode());
                 }
             }
 
@@ -97,11 +97,11 @@ public class UserBaseMessageProvider {
                 sql.append("SELECT * FROM PROVINCE p where 1 = 1");
 
                 if(provinceVo.getId() != null){
-                    sql.append(" p.id = #{id}");
+                    sql.append(" p.id = " + provinceVo.getId());
                 }
 
                 if(null != provinceVo.getCountryId()){
-                    sql.append(" p.country_id = #{countryId}");
+                    sql.append(" p.country_id = " + provinceVo.getCountryId());
                 }
             }
 
