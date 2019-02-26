@@ -1,9 +1,7 @@
 package com.hc360.controller;
 
 import com.hc360.service.UserMessageService;
-import com.hc360.vo.MainArea;
-import com.hc360.vo.OnCorTable;
-import com.hc360.vo.RecvnotesParam;
+import com.hc360.vo.*;
 import com.hc360.vo.result.BaseResult;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -147,6 +145,32 @@ public class UserMessageController {
         } catch (Exception e) {
             e.printStackTrace();
             return BaseResult.isFail("取得最新留言数异常");
+        }
+    }
+
+    @RequestMapping("/city")
+    @ResponseBody
+    public BaseResult findCity(@RequestBody CityVo cityVo) {
+
+        try {
+            CityVo city = userMessageService.findCity(cityVo);
+            return BaseResult.isSuccess(city);
+        }catch (Exception e){
+            e.printStackTrace();
+            return BaseResult.isFail("查询城市异常");
+        }
+    }
+
+    @RequestMapping("/province")
+    @ResponseBody
+    public BaseResult findProvince(@RequestBody ProvinceVo provinceVo) {
+
+        try {
+            ProvinceVo province = userMessageService.findProvince(provinceVo);
+            return BaseResult.isSuccess(province);
+        }catch (Exception e){
+            e.printStackTrace();
+            return BaseResult.isFail("查询省份异常");
         }
     }
 

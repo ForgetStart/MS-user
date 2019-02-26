@@ -54,5 +54,5 @@ public interface UserInfoMapper {
     CityVo findCity(CityVo cityVo) throws Exception;
 
     @SelectProvider(type = UserBaseMessageProvider.class, method = "findProvince")
-    CityVo findProvince(ProvinceVo provinceVo) throws Exception;
+    ProvinceVo findProvince(ProvinceVo provinceVo) throws Exception;
 }

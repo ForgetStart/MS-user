@@ -114,5 +114,5 @@ public interface UserMessageService {
      * @return
      * @throws Exception
      */
-    CityVo findProvince(ProvinceVo provinceVo) throws Exception;
+    ProvinceVo findProvince(ProvinceVo provinceVo) throws Exception;
 }

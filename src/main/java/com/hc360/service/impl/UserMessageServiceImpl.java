@@ -174,7 +174,7 @@ public class UserMessageServiceImpl implements UserMessageService {
     }
 
     @Override
-    public CityVo findProvince(ProvinceVo provinceVo) throws Exception {
+    public ProvinceVo findProvince(ProvinceVo provinceVo) throws Exception {
         //先查询缓存
 
         return userInfoMapper.findProvince(provinceVo);
