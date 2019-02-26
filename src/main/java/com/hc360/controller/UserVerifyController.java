@@ -1,10 +1,13 @@
 package com.hc360.controller;
 
+import com.hc360.common.ReturnCode;
 import com.hc360.service.UserMessageService;
 import com.hc360.vo.CorTable;
 import com.hc360.vo.OnCorTable;
 import com.hc360.vo.result.BaseResult;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +24,8 @@ import javax.annotation.Resource;
 @RequestMapping("/v1/user")
 public class UserVerifyController {
 
+    private static final Log log = LogFactory.getLog("UserVerifyController");
+
     @Resource
     private UserMessageService userMessageService;
 
@@ -32,20 +37,27 @@ public class UserVerifyController {
      */
     @RequestMapping("/verify/{providerid}")
     @ResponseBody
-    public BaseResult isSystemFrozen(@PathVariable("providerid") Long pid) {
+    public BaseResult<Boolean> isSystemFrozen(@PathVariable("providerid") Long pid) {
+        BaseResult<Boolean> result = new BaseResult<>();
 
-        if (pid == null) return BaseResult.illegalParam("providerid 不能为空");
-
-        BaseResult baseResult = null;
-        try {
-            boolean isSystemFrozen = userMessageService.isSystemFrozen(pid, "0");
-            baseResult = BaseResult.isSuccess(isSystemFrozen);
-        } catch (Exception e) {
-            baseResult = BaseResult.isFail("判断用户是否被冻结异常");
-            e.printStackTrace();
+        if (pid == null) {
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
         }
 
-        return baseResult;
+        try {
+            boolean isSystemFrozen = userMessageService.isSystemFrozen(pid, "0");
+            result.setData(isSystemFrozen);
+            result.setErrcode(ReturnCode.OK.getErrcode());
+        } catch (Exception e) {
+            log.error("判断用户是否被冻结异常");
+            e.printStackTrace();
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
+        }
+
+        return result;
     }
 
     /**
@@ -60,14 +72,22 @@ public class UserVerifyController {
      */
     @RequestMapping("/industry/complete/{providerid}")
     @ResponseBody
-    public BaseResult isComplete(@PathVariable("providerid") Long pid) {
-        if (pid == null) return BaseResult.illegalParam("providerid 不能为空");
+    public BaseResult<Boolean> isComplete(@PathVariable("providerid") Long pid) {
+        BaseResult<Boolean> result = new BaseResult<>();
+
+        if (pid == null){
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
 
         try {
             OnCorTable onCorTable = userMessageService.findOnCorTableByProviderId(pid);
             if (onCorTable != null) {
                 if (null != onCorTable.getAreaid() && !"235".equals(onCorTable.getAreaid())) {
-                    return BaseResult.isSuccess(true, "主营行业完整");
+                    result.setData(true);
+                    result.setErrcode(ReturnCode.OK.getErrcode());
+                    return result;
                 }
             }
 
@@ -75,17 +95,27 @@ public class UserVerifyController {
             CorTable corTable = userMessageService.findCorTableByProviderIdAndChecked(pid);
             if (corTable != null) {
                 if (null != corTable.getAreaid() && !"235".equals(corTable.getAreaid())) {
-                    return BaseResult.isSuccess(true, "主营行业完整");
+                    result.setData(true);
+                    result.setErrcode(ReturnCode.OK.getErrcode());
+                    return result;
                 } else {
-                    return BaseResult.isSuccess(false, "主营行业不完整");
+                    result.setData(false);
+                    result.setErrcode(ReturnCode.OK.getErrcode());
+                    return result;
                 }
             }
 
-            return BaseResult.isSuccess(false, "主营行业不完整");
+            result.setData(false);
+            result.setErrcode(ReturnCode.OK.getErrcode());
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
-            return BaseResult.isFail("获取主营行业是否完整异常");
+            log.error("获取主营行业是否完整异常");
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
+
+        return result;
     }
 
 
@@ -97,14 +127,22 @@ public class UserVerifyController {
      */
     @RequestMapping("/company/complete/{providerid}")
     @ResponseBody
-    public BaseResult isCompanyComplete(@PathVariable("providerid") Long pid) {
-        if (pid == null) return BaseResult.illegalParam("providerid 不能为空");
+    public BaseResult<Boolean> isCompanyComplete(@PathVariable("providerid") Long pid) {
+        BaseResult<Boolean> result = new BaseResult<>();
+
+        if (pid == null){
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
 
         try {
             OnCorTable onCorTable = userMessageService.findOnCorTableByProviderId(pid);
             if (onCorTable != null) {
                 if (StringUtils.isNotBlank(onCorTable.getName()) && StringUtils.isNotBlank(onCorTable.getContacter())) {
-                    return BaseResult.isSuccess(true, "公司信息完整");
+                    result.setData(true);
+                    result.setErrcode(ReturnCode.OK.getErrcode());
+                    return result;
                 }
             }
 
@@ -112,17 +150,27 @@ public class UserVerifyController {
             CorTable corTable = userMessageService.findCorTableByProviderIdAndChecked(pid);
             if (corTable != null) {
                 if (StringUtils.isNotBlank(corTable.getName()) && StringUtils.isNotBlank(corTable.getContacter())) {
-                    return BaseResult.isSuccess(true, "公司信息完整");
+                    result.setData(true);
+                    result.setErrcode(ReturnCode.OK.getErrcode());
+                    return result;
                 } else {
-                    return BaseResult.isSuccess(false, "公司信息不完整");
+                    result.setData(false);
+                    result.setErrcode(ReturnCode.OK.getErrcode());
+                    return result;
                 }
             }
 
-            return BaseResult.isSuccess(false, "公司信息不完整");
+            result.setData(false);
+            result.setErrcode(ReturnCode.OK.getErrcode());
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
-            return BaseResult.isFail("获取公司信息是否完整异常");
+            log.error("获取公司信息是否完整异常");
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
+
+        return result;
     }
 
     /**
@@ -133,17 +181,28 @@ public class UserVerifyController {
      */
     @RequestMapping("/district/{providerid}")
     @ResponseBody
-    public BaseResult isDistrict(@PathVariable("providerid") Long pid) {
-        if (pid == null) return BaseResult.illegalParam("providerid 不能为空");
+    public BaseResult<Boolean> isDistrict(@PathVariable("providerid") Long pid) {
+        BaseResult<Boolean> result = new BaseResult<>();
+
+        if (pid == null){
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
 
         try {
             Boolean isDistrict = userMessageService.isDistrictByProviderid(pid);
-            return BaseResult.isSuccess(isDistrict);
+            result.setData(isDistrict);
+            result.setErrcode(ReturnCode.OK.getErrcode());
+
         } catch (Exception e) {
             e.printStackTrace();
-
-            return BaseResult.isFail("获取判断当前用户是否非大陆用户异常");
+            log.error("获取判断当前用户是否非大陆用户异常");
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
+
+        return result;
     }
 
     /**
@@ -155,53 +214,89 @@ public class UserVerifyController {
      */
     @RequestMapping("/simple/{providerid}/{userId}")
     @ResponseBody
-    public BaseResult isSimple(@PathVariable("providerid") Long pid, @PathVariable("userId") Long userId) {
-        if (pid == null || userId == null) return BaseResult.illegalParam("providerid 为空或 userId 为空");
+    public BaseResult<Boolean> isSimple(@PathVariable("providerid") Long pid, @PathVariable("userId") Long userId) {
+        BaseResult<Boolean> result = new BaseResult<>();
+
+        if (pid == null || userId == null){
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
 
         try {
             boolean isSimpleUser = userMessageService.isSimpleUserByUserId(userId, pid);
-            return BaseResult.isSuccess(isSimpleUser);
+            result.setData(isSimpleUser);
+            result.setErrcode(ReturnCode.OK.getErrcode());
         } catch (Exception e) {
             e.printStackTrace();
-            return BaseResult.isFail("获取判断当前用户是否简单注册用户异常");
+            log.error("获取判断当前用户是否简单注册用户异常");
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
+
+        return result;
     }
 
     /**
      * 判断当前用户是否在白名单中
+     *
      * @param pid
      * @return
      */
     @RequestMapping("/white/list/{providerid}")
     @ResponseBody
-    public BaseResult isWhileList(@PathVariable("providerid") Long pid){
-        if (pid == null) return BaseResult.illegalParam("providerid 不能为空");
+    public BaseResult<Boolean> isWhileList(@PathVariable("providerid") Long pid) {
+        BaseResult<Boolean> result = new BaseResult<>();
+
+        if (pid == null){
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
+
         try {
             boolean iswhiteList = userMessageService.isWhiteList(pid);
-            return BaseResult.isSuccess(iswhiteList);
-        }catch (Exception e){
+            result.setData(iswhiteList);
+            result.setErrcode(ReturnCode.OK.getErrcode());
+        } catch (Exception e) {
             e.printStackTrace();
-            return BaseResult.isFail("判断当前用户是否在白名单中异常");
+            log.error("判断当前用户是否在白名单中异常");
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
+
+        return result;
     }
 
     /**
      * 判断当前用户是否绑定手机
+     *
      * @param pid
      * @return
      */
     @RequestMapping("/bind/mobile/{providerid}")
     @ResponseBody
-    public BaseResult isBindMobile(@PathVariable("providerid") Long pid){
+    public BaseResult<Boolean> isBindMobile(@PathVariable("providerid") Long pid) {
 
-        if (pid == null) return BaseResult.illegalParam("providerid 不能为空");
+        BaseResult<Boolean> result = new BaseResult<>();
+
+        if (pid == null){
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
 
         try {
             boolean isBind = userMessageService.isBindMobile(pid, 1L);
-            return BaseResult.isSuccess(isBind);
-        }catch (Exception e){
+            result.setData(isBind);
+            result.setErrcode(ReturnCode.OK.getErrcode());
+        } catch (Exception e) {
             e.printStackTrace();
-            return BaseResult.isFail("判断当前用户是否绑定手机异常");
+            log.error("判断当前用户是否绑定手机异常");
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
+
+        return result;
     }
 }

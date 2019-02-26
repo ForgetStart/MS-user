@@ -1,9 +1,12 @@
 package com.hc360.controller;
 
+import com.hc360.common.ReturnCode;
 import com.hc360.service.UserMessageService;
 import com.hc360.vo.*;
 import com.hc360.vo.result.BaseResult;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,19 +26,24 @@ import java.util.List;
 @RequestMapping("/v1/user")
 public class UserMessageController {
 
+    private static final Log log =  LogFactory.getLog("UserMessageController");
+
     @Resource
     private UserMessageService userMessageService;
 
     @RequestMapping("/userInfo/{providerid}")
     @ResponseBody
-    public BaseResult findOnCorTableByProviderId(@PathVariable("providerid") long pid) {
-        BaseResult baseResult = null;
+    public BaseResult<OnCorTable> findOnCorTableByProviderId(@PathVariable("providerid") long pid) {
+        BaseResult<OnCorTable> baseResult = new BaseResult<>();
         try {
             OnCorTable onCorTable = userMessageService.findOnCorTableByProviderId(pid);
-            baseResult = BaseResult.isSuccess(onCorTable);
+            baseResult.setData(onCorTable);
+            baseResult.setErrcode(ReturnCode.OK.getErrcode());
 
         } catch (Exception e) {
-            baseResult = BaseResult.isFail("查询用户信息异常!");
+            log.error("查询用户信息异常!",e);
+            baseResult.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            baseResult.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
 
         return baseResult;
@@ -50,15 +58,22 @@ public class UserMessageController {
      */
     @RequestMapping("/base")
     @ResponseBody
-    public BaseResult findUserBaseByOnCorTable(@RequestBody OnCorTable onCorTable) {
+    public BaseResult<OnCorTable> findUserBaseByOnCorTable(@RequestBody OnCorTable onCorTable) {
+        BaseResult<OnCorTable> baseResult = new BaseResult<>();
 
         try {
             OnCorTable baseUser = userMessageService.findUserBaseByOnCorTable(onCorTable);
-            return BaseResult.isSuccess(baseUser);
+            baseResult.setData(onCorTable);
+            baseResult.setErrcode(ReturnCode.OK.getErrcode());
+
         } catch (Exception e) {
             e.printStackTrace();
-            return BaseResult.isFail("获取用户基本信息异常!");
+            log.error("获取用户基本信息异常!",e);
+            baseResult.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            baseResult.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
+
+        return baseResult;
     }
 
     /**
@@ -69,16 +84,26 @@ public class UserMessageController {
      */
     @RequestMapping("/allowscreen/keyword/{providerid}")
     @ResponseBody
-    public BaseResult findUserBaseByOnCorTable(@PathVariable("providerid") Long pid) {
-        if (pid == null) return BaseResult.illegalParam("providerid 不能为空");
+    public BaseResult<List<String>> findUserBaseByOnCorTable(@PathVariable("providerid") Long pid) {
+        BaseResult<List<String>> result = new BaseResult<>();
+
+        if (pid == null){
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
 
         try {
             List<String> allowList = userMessageService.getAllowScreenKeyword(pid);
-            return BaseResult.isSuccess(allowList);
+            result.setData(allowList);
+            result.setErrcode(ReturnCode.OK.getErrcode());
         } catch (Exception e) {
-            e.printStackTrace();
-            return BaseResult.isFail("获取用户屏蔽词白名单异常");
+            log.error("获取用户屏蔽词白名单异常",e);
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
+
+        return result;
     }
 
 
@@ -89,14 +114,20 @@ public class UserMessageController {
      */
     @RequestMapping("/all/mainarea")
     @ResponseBody
-    public BaseResult findAllMainArea() {
+    public BaseResult<List<MainArea>> findAllMainArea() {
+        BaseResult<List<MainArea>> result = new BaseResult<>();
         try {
             List<MainArea> mainAreas = userMessageService.findMainArea();
-            return BaseResult.isSuccess(mainAreas);
+            result.setData(mainAreas);
+            result.setErrcode(ReturnCode.OK.getErrcode());
         } catch (Exception e) {
             e.printStackTrace();
-            return BaseResult.isFail("获取所有主营行业异常");
+            log.error("获取所有主营行业异常", e);
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
+
+        return result;
     }
 
 
@@ -108,16 +139,27 @@ public class UserMessageController {
      */
     @RequestMapping("/areaname/{areacode}")
     @ResponseBody
-    public BaseResult findAreaNameByAreaCode(@PathVariable("areacode") String areacode) {
-        if (StringUtils.isBlank(areacode)) return BaseResult.illegalParam("areacode 为空");
+    public BaseResult<String> findAreaNameByAreaCode(@PathVariable("areacode") String areacode) {
+        BaseResult<String> result = new BaseResult<>();
+
+        if (StringUtils.isBlank(areacode)){
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
 
         try {
             String areaName = userMessageService.findAreaNameByAreaCode(areacode);
-            return BaseResult.isSuccess(areaName);
+            result.setData(areaName);
+            result.setErrcode(ReturnCode.OK.getErrcode());
         } catch (Exception e) {
             e.printStackTrace();
-            return BaseResult.isFail("根据行业编号查询行业名称异常");
+            log.error("根据行业编号查询行业名称异常", e);
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
+
+        return result;
     }
 
 
@@ -128,8 +170,14 @@ public class UserMessageController {
      */
     @RequestMapping("/leave/word/{providerid}")
     @ResponseBody
-    public BaseResult findLeaveWordCount(@PathVariable("providerid") Long pid) {
-        if (pid == null) return BaseResult.illegalParam("providerid 不能为空");
+    public BaseResult<Integer> findLeaveWordCount(@PathVariable("providerid") Long pid) {
+        BaseResult<Integer> result = new BaseResult<>();
+
+        if (pid == null){
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
 
         RecvnotesParam recvparam = new RecvnotesParam();
         recvparam.setProvinceid(pid);
@@ -141,37 +189,56 @@ public class UserMessageController {
 
         try {
             int count = userMessageService.findLeaveWordCount(recvparam);
-            return BaseResult.isSuccess(count);
+            result.setData(count);
+            result.setErrcode(ReturnCode.OK.getErrcode());
         } catch (Exception e) {
             e.printStackTrace();
-            return BaseResult.isFail("取得最新留言数异常");
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
+            log.error("取得最新留言数异常",e);
         }
+
+        return result;
     }
 
     @RequestMapping("/city")
     @ResponseBody
-    public BaseResult findCity(@RequestBody CityVo cityVo) {
+    public BaseResult<CityVo> findCity(@RequestBody CityVo cityVo) {
+        BaseResult<CityVo> result = new BaseResult<>();
 
         try {
             CityVo city = userMessageService.findCity(cityVo);
-            return BaseResult.isSuccess(city);
+            result.setData(city);
+            result.setErrcode(ReturnCode.OK.getErrcode());
+
         }catch (Exception e){
             e.printStackTrace();
-            return BaseResult.isFail("查询城市异常");
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
+            log.error("查询城市异常", e);
         }
+
+        return result;
     }
 
     @RequestMapping("/province")
     @ResponseBody
-    public BaseResult findProvince(@RequestBody ProvinceVo provinceVo) {
+    public BaseResult<ProvinceVo> findProvince(@RequestBody ProvinceVo provinceVo) {
+
+        BaseResult<ProvinceVo> result = new BaseResult<>();
 
         try {
             ProvinceVo province = userMessageService.findProvince(provinceVo);
-            return BaseResult.isSuccess(province);
+            result.setData(province);
+            result.setErrcode(ReturnCode.OK.getErrcode());
         }catch (Exception e){
             e.printStackTrace();
-            return BaseResult.isFail("查询省份异常");
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
+            log.error("查询省份异常");
         }
+
+        return result;
     }
 
 }
