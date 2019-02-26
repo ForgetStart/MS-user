@@ -63,7 +63,7 @@ public class UserMessageController {
 
         try {
             OnCorTable baseUser = userMessageService.findUserBaseByOnCorTable(onCorTable);
-            baseResult.setData(onCorTable);
+            baseResult.setData(baseUser);
             baseResult.setErrcode(ReturnCode.OK.getErrcode());
 
         } catch (Exception e) {
