@@ -16,7 +16,7 @@ public class ProvinceVo implements Serializable {
 
     private String shortName;
 
-    private Long shortValue;
+    private Long sortvalue;
 
     public Long getId() {
         return id;
@@ -50,11 +50,11 @@ public class ProvinceVo implements Serializable {
         this.shortName = shortName;
     }
 
-    public Long getShortValue() {
-        return shortValue;
+    public Long getSortvalue() {
+        return sortvalue;
     }
 
-    public void setShortValue(Long shortValue) {
-        this.shortValue = shortValue;
+    public void setSortvalue(Long sortvalue) {
+        this.sortvalue = sortvalue;
     }
 }

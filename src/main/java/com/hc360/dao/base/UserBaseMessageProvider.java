@@ -49,11 +49,11 @@ public class UserBaseMessageProvider {
 
     public String findLeaveWordCount(RecvnotesParam recvparam) {
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT count(a.id) from BusNote a where a.recvproviderid = #{provinceid}");
+        sql.append("SELECT count(a.noteid) from bus_note a where a.recvproviderid =" + recvparam.getProvinceid());
         sql.append(" and a.states='0' and (a.recvdel='0' or a.recvdel is null) AND a.isgarbage=0");
-        sql.append(" and ((a.lstate= '0' and a.notekind='0') or (a.lstate='3' and a.notekind='1'))");
-        sql.append(" and (a.sendproviderid = #{anymoussender} or exists");
-        sql.append(" (select 'x' from OnCorTable c where c.id=a.sendproviderid and c.states='0'))");
+        sql.append(" and ((a.lstate= '0' and a.note_kind='0') or (a.lstate='3' and a.note_kind='1'))");
+        sql.append(" and (a.sendproviderid ="+recvparam.getAnymoussender() +" or exists");
+        sql.append(" (select 'x' from on_cor_table c where c.providerid=a.sendproviderid and c.states='0'))");
 
         // 相关信息类型
         if (StringUtils.isNotBlank(recvparam.getInfotype())) {
@@ -70,14 +70,14 @@ public class UserBaseMessageProvider {
 
     public String findCity(CityVo cityVo) {
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * FROM CITY c where 1 = 1");
+        sql.append("SELECT c.*,c.province_id as provinceId FROM CITY c where 1 = 1");
 
         if (cityVo.getId() != null) {
-            sql.append(" c.id = " + cityVo.getId());
+            sql.append("and c.id = " + cityVo.getId());
         }
 
         if (StringUtils.isNotBlank(cityVo.getCityCode())) {
-            sql.append(" c.citycode = " + cityVo.getCityCode());
+            sql.append("and c.citycode = " + cityVo.getCityCode());
         }
 
         return sql.toString();
@@ -85,14 +85,14 @@ public class UserBaseMessageProvider {
 
     public String findProvince(ProvinceVo provinceVo) {
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * FROM PROVINCE p where 1 = 1");
+        sql.append("SELECT p.*,p.country_id as countryId FROM PROVINCE p where 1 = 1");
 
         if (provinceVo.getId() != null) {
-            sql.append(" p.id = " + provinceVo.getId());
+            sql.append("and p.id = " + provinceVo.getId());
         }
 
         if (null != provinceVo.getCountryId()) {
-            sql.append(" p.country_id = " + provinceVo.getCountryId());
+            sql.append("and p.country_id = " + provinceVo.getCountryId());
         }
 
         return sql.toString();
