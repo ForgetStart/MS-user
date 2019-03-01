@@ -180,5 +180,18 @@ public class UserMessageServiceImpl implements UserMessageService {
         return userInfoMapper.findProvince(provinceVo);
     }
 
+    /**
+     * 判断当前用户是否已实名认证
+     * @param providerId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public boolean isRealAuth(Long providerId) throws Exception {
+        int count = userInfoMapper.isRealAuth(providerId);
+
+        return count > 0;
+    }
+
 
 }

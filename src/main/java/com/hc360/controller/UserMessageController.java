@@ -232,7 +232,7 @@ public class UserMessageController {
             e.printStackTrace();
             result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
-            log.error("查询省份异常");
+            log.error("查询省份异常", e);
         }
 
         return result;

@@ -115,4 +115,12 @@ public interface UserMessageService {
      * @throws Exception
      */
     ProvinceVo findProvince(ProvinceVo provinceVo) throws Exception;
+
+    /**
+     * 判断当前用户是否已实名认证
+     * @param providerId
+     * @return
+     * @throws Exception
+     */
+    boolean isRealAuth(Long providerId) throws Exception;
 }

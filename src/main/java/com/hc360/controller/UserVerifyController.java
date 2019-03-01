@@ -51,7 +51,7 @@ public class UserVerifyController {
             result.setData(isSystemFrozen);
             result.setErrcode(ReturnCode.OK.getErrcode());
         } catch (Exception e) {
-            log.error("判断用户是否被冻结异常");
+            log.error("判断用户是否被冻结异常", e);
             e.printStackTrace();
             result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
@@ -75,7 +75,7 @@ public class UserVerifyController {
     public BaseResult<Boolean> isComplete(@PathVariable("providerid") Long pid) {
         BaseResult<Boolean> result = new BaseResult<>();
 
-        if (pid == null){
+        if (pid == null) {
             result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
             return result;
@@ -110,7 +110,7 @@ public class UserVerifyController {
             return result;
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("获取主营行业是否完整异常");
+            log.error("获取主营行业是否完整异常", e);
             result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
@@ -130,7 +130,7 @@ public class UserVerifyController {
     public BaseResult<Boolean> isCompanyComplete(@PathVariable("providerid") Long pid) {
         BaseResult<Boolean> result = new BaseResult<>();
 
-        if (pid == null){
+        if (pid == null) {
             result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
             return result;
@@ -165,7 +165,7 @@ public class UserVerifyController {
             return result;
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("获取公司信息是否完整异常");
+            log.error("获取公司信息是否完整异常", e);
             result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
@@ -184,7 +184,7 @@ public class UserVerifyController {
     public BaseResult<Boolean> isDistrict(@PathVariable("providerid") Long pid) {
         BaseResult<Boolean> result = new BaseResult<>();
 
-        if (pid == null){
+        if (pid == null) {
             result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
             return result;
@@ -197,7 +197,7 @@ public class UserVerifyController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("获取判断当前用户是否非大陆用户异常");
+            log.error("获取判断当前用户是否非大陆用户异常", e);
             result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
@@ -217,7 +217,7 @@ public class UserVerifyController {
     public BaseResult<Boolean> isSimple(@PathVariable("providerid") Long pid, @PathVariable("userId") Long userId) {
         BaseResult<Boolean> result = new BaseResult<>();
 
-        if (pid == null || userId == null){
+        if (pid == null || userId == null) {
             result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
             return result;
@@ -229,7 +229,7 @@ public class UserVerifyController {
             result.setErrcode(ReturnCode.OK.getErrcode());
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("获取判断当前用户是否简单注册用户异常");
+            log.error("获取判断当前用户是否简单注册用户异常", e);
             result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
@@ -248,7 +248,7 @@ public class UserVerifyController {
     public BaseResult<Boolean> isWhileList(@PathVariable("providerid") Long pid) {
         BaseResult<Boolean> result = new BaseResult<>();
 
-        if (pid == null){
+        if (pid == null) {
             result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
             return result;
@@ -260,7 +260,7 @@ public class UserVerifyController {
             result.setErrcode(ReturnCode.OK.getErrcode());
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("判断当前用户是否在白名单中异常");
+            log.error("判断当前用户是否在白名单中异常", e);
             result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
@@ -280,7 +280,7 @@ public class UserVerifyController {
 
         BaseResult<Boolean> result = new BaseResult<>();
 
-        if (pid == null){
+        if (pid == null) {
             result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
             return result;
@@ -292,11 +292,41 @@ public class UserVerifyController {
             result.setErrcode(ReturnCode.OK.getErrcode());
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("判断当前用户是否绑定手机异常");
+            log.error("判断当前用户是否绑定手机异常", e);
             result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
         }
 
+        return result;
+    }
+
+
+    /**
+     * 判断当前用户是否已实名认证
+     *
+     * @param pid
+     * @return
+     */
+    @RequestMapping("/realauth/{providerid}")
+    @ResponseBody
+    public BaseResult<Boolean> isRealAuth(@PathVariable("providerid") Long pid) {
+        BaseResult<Boolean> result = new BaseResult<>();
+
+        if (pid == null) {
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
+
+        try {
+            boolean isRealAuth = userMessageService.isRealAuth(pid);
+            result.setData(isRealAuth);
+            result.setErrcode(ReturnCode.OK.getErrcode());
+        } catch (Exception e) {
+            log.error("断当前用户是否已实名认证异常", e);
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
+        }
         return result;
     }
 }
