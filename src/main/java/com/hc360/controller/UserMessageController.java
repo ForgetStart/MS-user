@@ -46,6 +46,29 @@ public class UserMessageController {
         return baseResult;
     }
 
+    @RequestMapping("/findother/{providerid}")
+    @ResponseBody
+    public BaseResult<OnCorTableOther> findOther(@PathVariable("providerid") Long pid) {
+        BaseResult<OnCorTableOther> result = new BaseResult<>();
+
+        if (pid == null){
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
+
+        try {
+            OnCorTableOther onCorTableOther = userMessageService.findOnCorTableOther(pid);
+            result.setData(onCorTableOther);
+            result.setErrcode(ReturnCode.OK.getErrcode());
+        }catch (Exception e){
+            log.error("查询OnCorTableOther异常!",e);
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
+        }
+        return result;
+
+    }
 
     /**
      * 根据动态条件，查询用户基本信息

@@ -23,6 +23,9 @@ public interface UserInfoMapper {
     @SelectProvider(type = UserBaseMessageProvider.class, method = "SelectUserWithParam")
     OnCorTable findUserBaseByOnCorTable(OnCorTable onCorTable) throws Exception;
 
+    @Select("select co.*,co.providerid as id from on_cor_table_other co where co.providerid = #{providerId}")
+    OnCorTableOther findOnCorTableOther(@Param("providerId") Long providerId) throws Exception;
+
     @Select("select oct.*,oct.providerid as id from cor_table oct where oct.providerid = #{providerId} and oct.CHECKED = 1")
     CorTable findCorTableByProviderIdAndChecked(@Param("providerId") Long providerId) throws Exception;
 
@@ -58,4 +61,13 @@ public interface UserInfoMapper {
 
     @Select("select count(1) from cor_certificate_state cs where cs.providerid = #{providerId} and cs.certificate_state = '2' and cs.state = '0'")
     int isRealAuth(@Param("providerId") Long providerId) throws Exception;
+
+    @Select("select count(1) from corp_busin_sumlimit cb where cb.providerid = #{providerId}")
+    int isExistProviderLimit(@Param("providerId") Long providerId);
+
+    @Select("select count(c.providerid) from On_Cor_Table c inner join On_Cor_Table_Other t on t.providerid=c.providerid where t.sourcetypeid=#{sourcetypeid} and (c.name is null or c.CONTACTER is null or c.name=' ' or c.CONTACTER='' or c.CONTACTER=' ') and c.providerid=#{providerId}")
+    int checkIsMakeupInfoUserToOnCorTable(@Param("providerId") Long providerId, @Param("sourcetypeid") String sourcetypeid) throws Exception;
+
+    @Select("select count(c.providerid) from Cor_Table c inner join Cor_Table_Other t on t.providerid=c.providerid where t.sourcetypeid=#{sourcetypeid} and (c.name is null or c.CONTACTER is null or c.name=' ' or c.CONTACTER='' or c.CONTACTER=' ') and c.providerid=#{providerId}")
+    int checkIsMakeupInfoUserToCorTable(@Param("providerId") Long providerId, @Param("sourcetypeid") String sourcetypeid) throws Exception;
 }

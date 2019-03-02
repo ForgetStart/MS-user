@@ -1,7 +1,11 @@
 package com.hc360.controller;
 
+import com.hc360.AppConstants;
 import com.hc360.common.ReturnCode;
+import com.hc360.common.constants.BusinConstants;
+import com.hc360.restful.fallback.ProductService;
 import com.hc360.service.UserMessageService;
+import com.hc360.vo.BusinLimitParam;
 import com.hc360.vo.CorTable;
 import com.hc360.vo.OnCorTable;
 import com.hc360.vo.result.BaseResult;
@@ -10,6 +14,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,6 +33,9 @@ public class UserVerifyController {
 
     @Resource
     private UserMessageService userMessageService;
+
+    @Resource
+    private ProductService productService;
 
     /**
      * 查询用户是否在黑名单中(是否被冻结)
@@ -125,9 +133,9 @@ public class UserVerifyController {
      * @param pid
      * @return
      */
-    @RequestMapping("/company/complete/{providerid}")
+    @RequestMapping("/company/complete/{providerid}/{sourcetypeid}")
     @ResponseBody
-    public BaseResult<Boolean> isCompanyComplete(@PathVariable("providerid") Long pid) {
+    public BaseResult<Boolean> isCompanyComplete(@PathVariable("providerid") Long pid, @PathVariable("sourcetypeid") String sourcetypeid) {
         BaseResult<Boolean> result = new BaseResult<>();
 
         if (pid == null) {
@@ -137,32 +145,18 @@ public class UserVerifyController {
         }
 
         try {
-            OnCorTable onCorTable = userMessageService.findOnCorTableByProviderId(pid);
-            if (onCorTable != null) {
-                if (StringUtils.isNotBlank(onCorTable.getName()) && StringUtils.isNotBlank(onCorTable.getContacter())) {
-                    result.setData(true);
-                    result.setErrcode(ReturnCode.OK.getErrcode());
-                    return result;
-                }
-            }
+           int onCorTableCount = userMessageService.checkIsMakeupInfoUserToOnCorTable(pid, sourcetypeid);
+           if(onCorTableCount > 0){
+               onCorTableCount = userMessageService.checkIsMakeupInfoUserToCorTable(pid, sourcetypeid);
+           }
 
-            //获取审核已通过的corTable表中数据
-            CorTable corTable = userMessageService.findCorTableByProviderIdAndChecked(pid);
-            if (corTable != null) {
-                if (StringUtils.isNotBlank(corTable.getName()) && StringUtils.isNotBlank(corTable.getContacter())) {
-                    result.setData(true);
-                    result.setErrcode(ReturnCode.OK.getErrcode());
-                    return result;
-                } else {
-                    result.setData(false);
-                    result.setErrcode(ReturnCode.OK.getErrcode());
-                    return result;
-                }
-            }
-
-            result.setData(false);
-            result.setErrcode(ReturnCode.OK.getErrcode());
-            return result;
+           if(onCorTableCount > 0){
+               result.setData(false);
+               result.setErrcode(ReturnCode.OK.getErrcode());
+           }else{
+               result.setData(true);
+               result.setErrcode(ReturnCode.OK.getErrcode());
+           }
         } catch (Exception e) {
             e.printStackTrace();
             log.error("获取公司信息是否完整异常", e);
@@ -329,4 +323,114 @@ public class UserVerifyController {
         }
         return result;
     }
+
+
+    /**
+     * 据账号id判断该账号是否存在发布商机的数目限制
+     * @param pid
+     * @return
+     */
+    @RequestMapping("/isproviderlimit/{providerid}")
+    @ResponseBody
+    public BaseResult<Boolean> isExistProviderLimit(@PathVariable("providerid") Long pid) {
+        BaseResult<Boolean> result = new BaseResult<>();
+
+        if (pid == null) {
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
+
+        try {
+            boolean isExistProviderLimit = userMessageService.isExistProviderLimit(pid);
+            result.setData(isExistProviderLimit);
+            result.setErrcode(ReturnCode.OK.getErrcode());
+        } catch (Exception e) {
+            log.error("据账号id判断该账号是否存在发布商机的数目限制异常", e);
+            result.setErrcode(ReturnCode.ERROR_Exception.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_Exception.getErrmsg());
+        }
+        return result;
+    }
+
+
+    /**
+     * 商机上限检查
+     * @param businLimitParam
+     * @return
+     */
+    @RequestMapping("/findBusinLimit")
+    @ResponseBody
+    public BaseResult<String> findBusinLimit(@RequestBody BusinLimitParam businLimitParam){
+        BaseResult<String> result = new BaseResult<>();
+        String msg = null;
+
+        if(null == businLimitParam){
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
+
+        int userLimit = 0;
+        BaseResult<Integer> userLimitResult = productService.findBusinLimit(businLimitParam);
+        if(userLimitResult.getErrcode() == 0 && null != userLimitResult.getData()){
+            userLimit = userLimitResult.getData();
+        }
+
+        boolean isArea = "018".equals(businLimitParam.getAreaId());     //电子行业代码
+
+        if("0".equals(businLimitParam.getSorttag())){//如果是供应商机
+            //普通行业收费会员发布商机上限100000、电子行业上限5000000
+            int j = businLimitParam.getMemberType() >= AppConstants.MMT_MEMBER_MMT ? isArea ?
+                    BusinConstants.ETC_BUSIN_FEE_MAXNUM : BusinConstants.BUSIN_FEE_MAXNUM : BusinConstants.BUSIN_FREE_MAXNUM;
+            /** 判断当前用户是否所在行业是受限制行业, 或者是该账号是受限制账号, 是的话重新设置上限 */
+            int areaLimit = 0;
+            BaseResult<Integer> areaLimitResult = productService.isExistAreaLimit(businLimitParam.getSupcatid());
+            if(areaLimitResult.getErrcode() == 0 && null != areaLimitResult.getData()){
+                areaLimit = areaLimitResult.getData();
+            }
+
+            if ( (areaLimit > 0 || userMessageService.isExistProviderLimit(businLimitParam.getProviderId()))&&
+                    businLimitParam.getMemberType() >= AppConstants.MMT_MEMBER_MMT) {
+                j = BusinConstants.LIMI_BUSIN_FEE_MAXNUM;
+            }
+
+            if (userLimit >= j) {
+                msg = "对不起，你的商机数量已经超过上限" + j + "条，请删除无效商机后再继续发布新的商机！";
+                result.setData(msg);
+                result.setErrcode(ReturnCode.OK.getErrcode());
+                return result;
+            }
+            if (StringUtils.isNotBlank(businLimitParam.getSupcatid())) {
+                /** 但是发布的商机在产品分类下不能超过10000 电子行业不能超过100000*/
+                int cat_j = isArea ? BusinConstants.ETC_BUSIN_SUPCAT_MAXNUM : BusinConstants.BUSIN_SUPCAT_MAXNUM;
+                int userSupcatLimit = 0;
+                BaseResult<Integer> userSupcatLimitResult = productService.findBusinLimit(businLimitParam);
+                if(userLimitResult.getErrcode() == 0 && null != userLimitResult.getData()){
+                    userSupcatLimit = userLimitResult.getData();
+                }
+                if(userSupcatLimit >= cat_j){
+                    msg = "您选择的产品分类下的商机数量已达上限，请更换其他分类。";
+                    result.setData(msg);
+                    result.setErrcode(ReturnCode.OK.getErrcode());
+                    return result;
+                }
+            }
+        }else if("1".equals(businLimitParam.getSorttag())){
+            int j = BusinConstants.BUSIN_BUY_MAXNUM;
+            if (userLimit >= j) {
+                msg = "对不起，你的商机数量已经超过上限"+j+"条，请删除无效商机后再继续发布新的商机！";
+                result.setData(msg);
+                result.setErrcode(ReturnCode.OK.getErrcode());
+                return result;
+            }
+        }
+
+        result.setData(msg);
+        result.setErrcode(ReturnCode.OK.getErrcode());
+        return result;
+    }
+
+
+
 }
