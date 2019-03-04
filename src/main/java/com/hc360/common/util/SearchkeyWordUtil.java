@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class SearchkeyWordUtil {
     public static List<String> getAllowScreenKeyword(long providerId) throws Exception {
-        String[] allowWordList = null;
         List<String> result = null;
         String allowWords = null;
             String urlString = "http://detail.b2b.hc360.com/detail/turbine/action/ajax.WhiteListAjaxAction?providerid=" + providerId;
@@ -22,7 +21,7 @@ public class SearchkeyWordUtil {
 
         if (allowWords != null && !"".equals(allowWords)) {
             result = new ArrayList<String>();
-            allowWordList = allowWords.split(",");
+            String[] allowWordList = allowWords.split(",");
             if (allowWordList != null && allowWordList.length > 0) {
                 for(int i = 0; i < allowWordList.length; ++i) {
                     result.add(allowWordList[i]);
