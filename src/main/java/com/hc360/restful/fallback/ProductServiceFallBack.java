@@ -1,4 +1,5 @@
 package com.hc360.restful.fallback;
+import com.hc360.restful.ProductService;
 import com.hc360.vo.BusinLimitParam;
 import com.hc360.vo.result.BaseResult;
 import org.apache.log4j.Logger;
@@ -8,7 +9,7 @@ import org.apache.log4j.Logger;
  * @Date: 2019/3/4 11:24
  * @Description:
  */
-public class ProductServiceFallBack implements ProductService{
+public class ProductServiceFallBack implements ProductService {
 
     Logger log = Logger.getLogger("ProductServiceFallBack");
 

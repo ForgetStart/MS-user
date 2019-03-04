@@ -1,5 +1,6 @@
-package com.hc360.restful.fallback;
+package com.hc360.restful;
 
+import com.hc360.restful.fallback.ProductServiceFallBack;
 import com.hc360.vo.BusinLimitParam;
 import com.hc360.vo.result.BaseResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
