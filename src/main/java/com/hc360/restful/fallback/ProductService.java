@@ -10,14 +10,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * 调用 ms-productpub-service服务
  */
-@FeignClient(value="productpubservice")
+@FeignClient(value="productpubservice", fallback = ProductServiceFallBack.class)
 public interface ProductService {
-	
 
+    /**
+     * 获取用户可发送的商机上限
+     * @param businLimitParam
+     * @return
+     */
     @RequestMapping("/v1/product/findBusinLimit")
     BaseResult<Integer> findBusinLimit(@RequestBody BusinLimitParam businLimitParam);
 
-    @RequestMapping("/v1/product/isExistAreaLimit/{areaId}")
+    /**
+     *判断当前用户是否所在行业是受限制行业 大于0 表示有限制
+     * @param areaId
+     * @return
+     */
+    @RequestMapping("/v1/product/findbusinarealimit/{areaId}")
     BaseResult<Integer> isExistAreaLimit(@PathVariable("areaId") String areaId);
 
 }

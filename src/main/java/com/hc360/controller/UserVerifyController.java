@@ -364,7 +364,7 @@ public class UserVerifyController {
     public BaseResult<String> findBusinLimit(@RequestBody BusinLimitParam businLimitParam){
         BaseResult<String> result = new BaseResult<>();
         String msg = null;
-
+        String supcatid = businLimitParam.getSupcatid();
         if(null == businLimitParam){
             result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
             result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
@@ -372,6 +372,8 @@ public class UserVerifyController {
         }
 
         int userLimit = 0;
+        businLimitParam.setSupcatid(null);
+        //获取用户发送商机上限
         BaseResult<Integer> userLimitResult = productService.findBusinLimit(businLimitParam);
         if(userLimitResult.getErrcode() == 0 && null != userLimitResult.getData()){
             userLimit = userLimitResult.getData();
@@ -401,13 +403,13 @@ public class UserVerifyController {
                 result.setErrcode(ReturnCode.OK.getErrcode());
                 return result;
             }
-            if (StringUtils.isNotBlank(businLimitParam.getSupcatid())) {
+            if (StringUtils.isNotBlank(supcatid)) {
                 /** 但是发布的商机在产品分类下不能超过10000 电子行业不能超过100000*/
                 int cat_j = isArea ? BusinConstants.ETC_BUSIN_SUPCAT_MAXNUM : BusinConstants.BUSIN_SUPCAT_MAXNUM;
                 int userSupcatLimit = 0;
                 BaseResult<Integer> userSupcatLimitResult = productService.findBusinLimit(businLimitParam);
-                if(userLimitResult.getErrcode() == 0 && null != userLimitResult.getData()){
-                    userSupcatLimit = userLimitResult.getData();
+                if(userSupcatLimitResult.getErrcode() == 0 && null != userSupcatLimitResult.getData()){
+                    userSupcatLimit = userSupcatLimitResult.getData();
                 }
                 if(userSupcatLimit >= cat_j){
                     msg = "您选择的产品分类下的商机数量已达上限，请更换其他分类。";
