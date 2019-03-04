@@ -21,7 +21,7 @@ public class SearchkeyWordUtil {
             allowWords = new String(allowWords.getBytes("ISO-8859-1"), "GBK");
 
         if (allowWords != null && !"".equals(allowWords)) {
-            result = new ArrayList();
+            result = new ArrayList<String>();
             allowWordList = allowWords.split(",");
             if (allowWordList != null && allowWordList.length > 0) {
                 for(int i = 0; i < allowWordList.length; ++i) {
