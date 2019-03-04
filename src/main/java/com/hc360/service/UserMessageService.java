@@ -24,6 +24,8 @@ public interface UserMessageService {
      */
     OnCorTable findUserBaseByOnCorTable(OnCorTable onCorTable) throws Exception;
 
+    OnCorTableOther findOnCorTableOther(Long providerId) throws Exception;
+
     CorTable findCorTableByProviderIdAndChecked(Long providerId) throws Exception;
 
     /**
@@ -115,4 +117,38 @@ public interface UserMessageService {
      * @throws Exception
      */
     ProvinceVo findProvince(ProvinceVo provinceVo) throws Exception;
+
+    /**
+     * 判断当前用户是否已实名认证
+     * @param providerId
+     * @return
+     * @throws Exception
+     */
+    boolean isRealAuth(Long providerId) throws Exception;
+
+    /**
+     * 据账号id判断该账号是否存在发布商机的数目限制 返回true存在账号限制
+     * @param providerId
+     * @return
+     * @throws Exception
+     */
+    boolean isExistProviderLimit(Long providerId);
+
+    /**
+     * 查询OnCorTable表，判断公司信息是否完整第一步
+     * @param providerId
+     * @param sourcetypeid
+     * @return
+     * @throws Exception
+     */
+    int checkIsMakeupInfoUserToOnCorTable(Long providerId, String sourcetypeid) throws Exception;
+
+    /**
+     * 查询CorTable表，判断公司信息是否完整第二步
+     * @param providerId
+     * @param sourcetypeid
+     * @return
+     * @throws Exception
+     */
+    int checkIsMakeupInfoUserToCorTable(Long providerId, String sourcetypeid) throws Exception;
 }

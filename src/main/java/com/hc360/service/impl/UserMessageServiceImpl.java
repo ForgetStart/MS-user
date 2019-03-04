@@ -34,6 +34,11 @@ public class UserMessageServiceImpl implements UserMessageService {
     }
 
     @Override
+    public OnCorTableOther findOnCorTableOther(Long providerId) throws Exception {
+        return userInfoMapper.findOnCorTableOther(providerId);
+    }
+
+    @Override
     public CorTable findCorTableByProviderIdAndChecked(Long providerId) throws Exception {
         return userInfoMapper.findCorTableByProviderIdAndChecked(providerId);
     }
@@ -180,5 +185,40 @@ public class UserMessageServiceImpl implements UserMessageService {
         return userInfoMapper.findProvince(provinceVo);
     }
 
+    /**
+     * 判断当前用户是否已实名认证
+     * @param providerId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public boolean isRealAuth(Long providerId) throws Exception {
+        int count = userInfoMapper.isRealAuth(providerId);
+
+        return count > 0;
+    }
+
+
+    /**
+     * 据账号id判断该账号是否存在发布商机的数目限制 返回true存在账号限制
+     * @param providerId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public boolean isExistProviderLimit(Long providerId) {
+        int count = userInfoMapper.isExistProviderLimit(providerId);
+        return count > 0;
+    }
+
+    @Override
+    public int checkIsMakeupInfoUserToOnCorTable(Long providerId, String sourcetypeid) throws Exception {
+        return userInfoMapper.checkIsMakeupInfoUserToOnCorTable(providerId, sourcetypeid);
+    }
+
+    @Override
+    public int checkIsMakeupInfoUserToCorTable(Long providerId, String sourcetypeid) throws Exception {
+        return userInfoMapper.checkIsMakeupInfoUserToCorTable(providerId, sourcetypeid);
+    }
 
 }
