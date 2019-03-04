@@ -124,7 +124,7 @@ public interface UserMessageService {
      * @return
      * @throws Exception
      */
-    boolean isRealAuth(Long providerId) throws Exception;
+    CorCertificateState isRealAuth(Long providerId) throws Exception;
 
     /**
      * 据账号id判断该账号是否存在发布商机的数目限制 返回true存在账号限制

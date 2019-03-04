@@ -59,8 +59,8 @@ public interface UserInfoMapper {
     @SelectProvider(type = UserBaseMessageProvider.class, method = "findProvince")
     ProvinceVo findProvince(ProvinceVo provinceVo) throws Exception;
 
-    @Select("select count(1) from cor_certificate_state cs where cs.providerid = #{providerId} and cs.certificate_state = '2' and cs.state = '0'")
-    int isRealAuth(@Param("providerId") Long providerId) throws Exception;
+    @Select("select cs.*,cs.certificate_state certificatestate from cor_certificate_state cs where cs.providerid = #{providerId} and cs.state = '0' order by cs.update_time desc")
+    List<CorCertificateState> isRealAuth(@Param("providerId") Long providerId) throws Exception;
 
     @Select("select count(1) from corp_busin_sumlimit cb where cb.providerid = #{providerId}")
     int isExistProviderLimit(@Param("providerId") Long providerId);

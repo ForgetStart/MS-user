@@ -6,6 +6,7 @@ import com.hc360.common.constants.BusinConstants;
 import com.hc360.restful.ProductService;
 import com.hc360.service.UserMessageService;
 import com.hc360.vo.BusinLimitParam;
+import com.hc360.vo.CorCertificateState;
 import com.hc360.vo.CorTable;
 import com.hc360.vo.OnCorTable;
 import com.hc360.vo.result.BaseResult;
@@ -297,15 +298,15 @@ public class UserVerifyController {
 
 
     /**
-     * 判断当前用户是否已实名认证
+     * 判断当前用户是否已实名认证--返回state为0的
      *
      * @param pid
      * @return
      */
     @RequestMapping("/realauth/{providerid}")
     @ResponseBody
-    public BaseResult<Boolean> isRealAuth(@PathVariable("providerid") Long pid) {
-        BaseResult<Boolean> result = new BaseResult<>();
+    public BaseResult<CorCertificateState> isRealAuth(@PathVariable("providerid") Long pid) {
+        BaseResult<CorCertificateState> result = new BaseResult<>();
 
         if (pid == null) {
             result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
@@ -314,8 +315,8 @@ public class UserVerifyController {
         }
 
         try {
-            boolean isRealAuth = userMessageService.isRealAuth(pid);
-            result.setData(isRealAuth);
+            CorCertificateState corCertificateState = userMessageService.isRealAuth(pid);
+            result.setData(corCertificateState);
             result.setErrcode(ReturnCode.OK.getErrcode());
         } catch (Exception e) {
             log.error("断当前用户是否已实名认证异常", e);

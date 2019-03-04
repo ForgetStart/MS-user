@@ -192,10 +192,13 @@ public class UserMessageServiceImpl implements UserMessageService {
      * @throws Exception
      */
     @Override
-    public boolean isRealAuth(Long providerId) throws Exception {
-        int count = userInfoMapper.isRealAuth(providerId);
-
-        return count > 0;
+    public CorCertificateState isRealAuth(Long providerId) throws Exception {
+        List<CorCertificateState> corCertificateStates = userInfoMapper.isRealAuth(providerId);
+        CorCertificateState corCertificateState = null;
+        if(null != corCertificateStates && corCertificateStates.size() > 0){
+            corCertificateState = corCertificateStates.get(0);
+        }
+        return corCertificateState;
     }
 
 
