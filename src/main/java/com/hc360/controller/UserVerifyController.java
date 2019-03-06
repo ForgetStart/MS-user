@@ -36,8 +36,8 @@ public class UserVerifyController {
     @Resource
     private UserMessageService userMessageService;
 
-    //@Resource
-   // private ProductService productService;
+    @Resource
+    private ProductService productService;
 
     /**
      * 查询用户是否在黑名单中(是否被冻结)
@@ -298,7 +298,7 @@ public class UserVerifyController {
 
 
     /**
-     * 判断当前用户是否已实名认证--返回state为0的
+     * 判断当前用户是否已实名认证
      *
      * @param pid
      * @return
@@ -361,79 +361,79 @@ public class UserVerifyController {
      * @param businLimitParam
      * @return
      */
-//    @RequestMapping("/findBusinLimit")
-//    @ResponseBody
-//    public BaseResult<String> findBusinLimit(@RequestBody BusinLimitParam businLimitParam){
-//        BaseResult<String> result = new BaseResult<>();
-//        String msg = null;
-//        String supcatid = businLimitParam.getSupcatid();
-//        if(null == businLimitParam){
-//            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
-//            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
-//            return result;
-//        }
-//
-//        int userLimit = 0;
-//        businLimitParam.setSupcatid(null);
-//        //获取用户发送商机上限
-//        BaseResult<Integer> userLimitResult = productService.findBusinLimit(businLimitParam);
-//        if(userLimitResult.getErrcode() == 0 && null != userLimitResult.getData()){
-//            userLimit = userLimitResult.getData();
-//        }
-//
-//        boolean isArea = "018".equals(businLimitParam.getAreaId());     //电子行业代码
-//
-//        if("0".equals(businLimitParam.getSorttag())){//如果是供应商机
-//            //普通行业收费会员发布商机上限100000、电子行业上限5000000
-//            int j = businLimitParam.getMemberType() >= AppConstants.MMT_MEMBER_MMT ? isArea ?
-//                    BusinConstants.ETC_BUSIN_FEE_MAXNUM : BusinConstants.BUSIN_FEE_MAXNUM : BusinConstants.BUSIN_FREE_MAXNUM;
-//            /** 判断当前用户是否所在行业是受限制行业, 或者是该账号是受限制账号, 是的话重新设置上限 */
-//            int areaLimit = 0;
-//            BaseResult<Integer> areaLimitResult = productService.isExistAreaLimit(businLimitParam.getSupcatid());
-//            if(areaLimitResult.getErrcode() == 0 && null != areaLimitResult.getData()){
-//                areaLimit = areaLimitResult.getData();
-//            }
-//
-//            if ( (areaLimit > 0 || userMessageService.isExistProviderLimit(businLimitParam.getProviderId()))&&
-//                    businLimitParam.getMemberType() >= AppConstants.MMT_MEMBER_MMT) {
-//                j = BusinConstants.LIMI_BUSIN_FEE_MAXNUM;
-//            }
-//
-//            if (userLimit >= j) {
-//                msg = "对不起，你的商机数量已经超过上限" + j + "条，请删除无效商机后再继续发布新的商机！";
-//                result.setData(msg);
-//                result.setErrcode(ReturnCode.OK.getErrcode());
-//                return result;
-//            }
-//            if (StringUtils.isNotBlank(supcatid)) {
-//                /** 但是发布的商机在产品分类下不能超过10000 电子行业不能超过100000*/
-//                int cat_j = isArea ? BusinConstants.ETC_BUSIN_SUPCAT_MAXNUM : BusinConstants.BUSIN_SUPCAT_MAXNUM;
-//                int userSupcatLimit = 0;
-//                BaseResult<Integer> userSupcatLimitResult = productService.findBusinLimit(businLimitParam);
-//                if(userSupcatLimitResult.getErrcode() == 0 && null != userSupcatLimitResult.getData()){
-//                    userSupcatLimit = userSupcatLimitResult.getData();
-//                }
-//                if(userSupcatLimit >= cat_j){
-//                    msg = "您选择的产品分类下的商机数量已达上限，请更换其他分类。";
-//                    result.setData(msg);
-//                    result.setErrcode(ReturnCode.OK.getErrcode());
-//                    return result;
-//                }
-//            }
-//        }else if("1".equals(businLimitParam.getSorttag())){
-//            int j = BusinConstants.BUSIN_BUY_MAXNUM;
-//            if (userLimit >= j) {
-//                msg = "对不起，你的商机数量已经超过上限"+j+"条，请删除无效商机后再继续发布新的商机！";
-//                result.setData(msg);
-//                result.setErrcode(ReturnCode.OK.getErrcode());
-//                return result;
-//            }
-//        }
-//
-//        result.setData(msg);
-//        result.setErrcode(ReturnCode.OK.getErrcode());
-//        return result;
-//    }
+    @RequestMapping("/findBusinLimit")
+    @ResponseBody
+    public BaseResult<String> findBusinLimit(@RequestBody BusinLimitParam businLimitParam){
+        BaseResult<String> result = new BaseResult<>();
+        String msg = null;
+        String supcatid = businLimitParam.getSupcatid();
+        if(null == businLimitParam){
+            result.setErrcode(ReturnCode.ERROR_PARAM.getErrcode());
+            result.setErrmsg(ReturnCode.ERROR_PARAM.getErrmsg());
+            return result;
+        }
+
+        int userLimit = 0;
+        businLimitParam.setSupcatid(null);
+        //获取用户发送商机上限
+        BaseResult<Integer> userLimitResult = productService.findBusinLimit(businLimitParam);
+        if(userLimitResult.getErrcode() == 0 && null != userLimitResult.getData()){
+            userLimit = userLimitResult.getData();
+        }
+
+        boolean isArea = "018".equals(businLimitParam.getAreaId());     //电子行业代码
+
+        if("0".equals(businLimitParam.getSorttag())){//如果是供应商机
+            //普通行业收费会员发布商机上限100000、电子行业上限5000000
+            int j = businLimitParam.getMemberType() >= AppConstants.MMT_MEMBER_MMT ? isArea ?
+                    BusinConstants.ETC_BUSIN_FEE_MAXNUM : BusinConstants.BUSIN_FEE_MAXNUM : BusinConstants.BUSIN_FREE_MAXNUM;
+            /** 判断当前用户是否所在行业是受限制行业, 或者是该账号是受限制账号, 是的话重新设置上限 */
+            int areaLimit = 0;
+            BaseResult<Integer> areaLimitResult = productService.isExistAreaLimit(businLimitParam.getAreaId());
+            if(areaLimitResult.getErrcode() == 0 && null != areaLimitResult.getData()){
+                areaLimit = areaLimitResult.getData();
+            }
+
+            if ( (areaLimit > 0 || userMessageService.isExistProviderLimit(businLimitParam.getProviderId()))&&
+                    businLimitParam.getMemberType() >= AppConstants.MMT_MEMBER_MMT) {
+                j = BusinConstants.LIMI_BUSIN_FEE_MAXNUM;
+            }
+
+            if (userLimit >= j) {
+                msg = "对不起，你的商机数量已经超过上限" + j + "条，请删除无效商机后再继续发布新的商机！";
+                result.setData(msg);
+                result.setErrcode(ReturnCode.OK.getErrcode());
+                return result;
+            }
+            if (StringUtils.isNotBlank(supcatid)) {
+                /** 但是发布的商机在产品分类下不能超过10000 电子行业不能超过100000*/
+                int cat_j = isArea ? BusinConstants.ETC_BUSIN_SUPCAT_MAXNUM : BusinConstants.BUSIN_SUPCAT_MAXNUM;
+                int userSupcatLimit = 0;
+                BaseResult<Integer> userSupcatLimitResult = productService.findBusinLimit(businLimitParam);
+                if(userSupcatLimitResult.getErrcode() == 0 && null != userSupcatLimitResult.getData()){
+                    userSupcatLimit = userSupcatLimitResult.getData();
+                }
+                if(userSupcatLimit >= cat_j){
+                    msg = "您选择的产品分类下的商机数量已达上限，请更换其他分类。";
+                    result.setData(msg);
+                    result.setErrcode(ReturnCode.OK.getErrcode());
+                    return result;
+                }
+            }
+        }else if("1".equals(businLimitParam.getSorttag())){
+            int j = BusinConstants.BUSIN_BUY_MAXNUM;
+            if (userLimit >= j) {
+                msg = "对不起，你的商机数量已经超过上限"+j+"条，请删除无效商机后再继续发布新的商机！";
+                result.setData(msg);
+                result.setErrcode(ReturnCode.OK.getErrcode());
+                return result;
+            }
+        }
+
+        result.setData(msg);
+        result.setErrcode(ReturnCode.OK.getErrcode());
+        return result;
+    }
 
 
 

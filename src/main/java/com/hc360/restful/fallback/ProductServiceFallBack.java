@@ -3,12 +3,14 @@ import com.hc360.restful.ProductService;
 import com.hc360.vo.BusinLimitParam;
 import com.hc360.vo.result.BaseResult;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 /**
  * @Auther: Administrator
  * @Date: 2019/3/4 11:24
  * @Description:
  */
+@Component
 public class ProductServiceFallBack implements ProductService {
 
     Logger log = Logger.getLogger("ProductServiceFallBack");

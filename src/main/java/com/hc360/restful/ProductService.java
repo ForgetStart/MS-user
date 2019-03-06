@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * 调用 ms-productpub-service服务
  */
-@FeignClient(value="productpubservice", fallback = ProductServiceFallBack.class)
+@FeignClient(value="productpubservice", fallback = ProductServiceFallBack.class,url = "http://localhost:80")
 public interface ProductService {
 
     /**
@@ -19,7 +19,7 @@ public interface ProductService {
      * @param businLimitParam
      * @return
      */
-    @RequestMapping("/v1/product/findBusinLimit")
+    @RequestMapping("/v1/product/findbusinlimit")
     BaseResult<Integer> findBusinLimit(@RequestBody BusinLimitParam businLimitParam);
 
     /**
