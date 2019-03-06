@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * 调用 ms-productpub-service服务
  */
-@FeignClient(value="productpubservice", fallback = ProductServiceFallBack.class,url = "http://localhost:80")
+@FeignClient(value="productpubservice", fallback = ProductServiceFallBack.class)
 public interface ProductService {
 
     /**
