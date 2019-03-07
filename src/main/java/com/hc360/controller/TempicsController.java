@@ -39,6 +39,18 @@ public class TempicsController {
     	return  temppicsService.getTmpRecord(sessionid);
     }
 
+    /**
+     * 获取临时的sessionid
+     * @author hk
+     * @date 2019-03-07
+     * @throws
+     * @return
+     */
+    @RequestMapping(value = "/getuploadsessionid")
+    public Long getUploadSessionId() throws Exception{
+        return temppicsService.getUploadSessionId();
+    }
+
 
 
 }

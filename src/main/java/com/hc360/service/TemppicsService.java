@@ -22,6 +22,13 @@ public interface TemppicsService {
 	 */
 	public List<Tmppic> getTmpRecord(long sessionid)throws Exception;
 
-
+	/**
+	 * 获取临时的sessionid
+	 * @author hk
+	 * @date 2019-03-07
+	 * @throws
+	 * @return
+	 */
+	public Long getUploadSessionId() throws Exception;
 
 }
