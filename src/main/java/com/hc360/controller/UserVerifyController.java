@@ -15,10 +15,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -361,7 +358,7 @@ public class UserVerifyController {
      * @param businLimitParam
      * @return
      */
-    @RequestMapping("/findBusinLimit")
+    @RequestMapping(value = "/findBusinLimit", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult<String> findBusinLimit(@RequestBody BusinLimitParam businLimitParam){
         BaseResult<String> result = new BaseResult<>();

@@ -76,7 +76,7 @@ public class UserMessageController {
      * @param onCorTable
      * @return
      */
-    @RequestMapping("/base")
+    @RequestMapping(value = "/base", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult<OnCorTable> findUserBaseByOnCorTable(@RequestBody OnCorTable onCorTable) {
         BaseResult<OnCorTable> baseResult = new BaseResult<>();
@@ -104,7 +104,7 @@ public class UserMessageController {
      */
     @RequestMapping("/allowscreen/keyword/{providerid}")
     @ResponseBody
-    public BaseResult<List<String>> findUserBaseByOnCorTable(@PathVariable("providerid") Long pid) {
+    public BaseResult<List<String>> findAllowScreen(@PathVariable("providerid") Long pid) {
         BaseResult<List<String>> result = new BaseResult<>();
 
         if (pid == null){

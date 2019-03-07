@@ -7,6 +7,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * 调用 ms-productpub-service服务
@@ -19,7 +20,7 @@ public interface ProductService {
      * @param businLimitParam
      * @return
      */
-    @RequestMapping("/v1/product/findbusinlimit")
+    @RequestMapping(value = "/v1/product/findbusinlimit", method = RequestMethod.POST)
     BaseResult<Integer> findBusinLimit(@RequestBody BusinLimitParam businLimitParam);
 
     /**
