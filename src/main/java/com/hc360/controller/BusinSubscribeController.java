@@ -20,10 +20,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import scala.annotation.target.param;
 
 import java.util.List;
@@ -49,7 +46,7 @@ public class BusinSubscribeController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/savesubscribtable")
+    @RequestMapping(value="/savesubscribtable",method = RequestMethod.POST)
     public BaseResult<SubscribeResultVO> saveSubscribTable(@RequestBody SubscribeParamVO param) throws Exception {
 
         BaseResult<SubscribeResultVO> result = new BaseResult<SubscribeResultVO>();
