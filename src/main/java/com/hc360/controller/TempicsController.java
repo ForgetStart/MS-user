@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -37,6 +38,18 @@ public class TempicsController {
     @RequestMapping("/geTmppics/{sessionid}")
     public List<Tmppic> getTmpRecord(@PathVariable("sessionid")long sessionid) throws Exception {
     	return  temppicsService.getTmpRecord(sessionid);
+    }
+
+    /**
+     * 获取临时的sessionid
+     * @author hk
+     * @date 2019-03-07
+     * @throws
+     * @return
+     */
+    @RequestMapping(value = "/getuploadsessionid",method = RequestMethod.POST)
+    public Long getUploadSessionId() throws Exception{
+        return temppicsService.getUploadSessionId();
     }
 
 

@@ -1,9 +1,7 @@
 package com.hc360.service.impl;
 
-import com.hc360.dao.BusinSupportTradeMapper;
 import com.hc360.dao.TemppicsMapper;
-import com.hc360.model.*;
-import com.hc360.service.BusinSupportTradeService;
+import com.hc360.model.Tmppic;
 import com.hc360.service.TemppicsService;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +23,10 @@ public class TemppicsServiceImpl implements TemppicsService {
 	@Override
 	public List<Tmppic> getTmpRecord(long sessionid) throws Exception {
 		return temppicsMapper.getTmpRecord(sessionid);
+	}
+
+	@Override
+	public Long getUploadSessionId() throws Exception {
+		return temppicsMapper.getUploadSessionId();
 	}
 }

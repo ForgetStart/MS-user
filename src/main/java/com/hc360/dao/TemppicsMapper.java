@@ -27,5 +27,13 @@ public interface TemppicsMapper {
 	@Select("select a.* from Tmppic a where a.sessionid = #{sessionid} order by a.picindex")
 	public List<Tmppic> getTmpRecord(@Param("sessionid") long sessionid) throws Exception;
 
-
+	/**
+	 * 获取临时的sessionid
+	 * @author hk
+	 * @date 2019-03-07
+	 * @throws
+	 * @return
+	 */
+	@Select(" select tmppic_session_seq.nextval as cnt from dual")
+	public Long getUploadSessionId() throws Exception;
 }
