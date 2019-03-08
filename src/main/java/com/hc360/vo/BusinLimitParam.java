@@ -11,14 +11,23 @@ public class BusinLimitParam implements Serializable {
 
     private Long providerId;
 
+    /**
+     * '0'可用 '1'逻辑删除
+     */
     private String state;
 
     private String supcatid;
 
     private String showstate;
 
+    /**
+     * 0-供应商机  1-求购信息
+     */
     private String sorttag;
 
+    /**
+     * 服务类信息标识, 1-服务信息
+     */
     private String serviceflag;
 
     private String areaId;
